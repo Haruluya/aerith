@@ -5,9 +5,18 @@
 >Base react and nodejs.
 
 ## Introduction 
+![Haruluya](https://img.shields.io/badge/X-Haruluya-brightgreen)
 
 ## Development Environment
-
+| <img width=50/>Modules <img width=50/> | <img width=50/>Version  <img width=50/>| <img width=50/>Directory<img width=50/>|
+| -------| ------- | --------|
+| ✅react | 7 |  |
+| ✅JavaScript | ES2015 |  |
+| ✅less   |         | .Vue/templates   |
+| ✅axios  |         | tifa-ui/api   |
+| ✅mock   |         | tifa-ui/mock  |
+| ✅eslint |         |                         |
+| ❔Nginx  | 1.2.x   |                         |
 ## Deployment method
 
 ## Meaning of project
