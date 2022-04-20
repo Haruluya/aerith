@@ -12,7 +12,7 @@
 
 **Aerith：**
 
-![aerith](https://tse3-mm.cn.bing.net/th/id/OIP-C.R8Ax-ZWyBxTAFDQjee1JSQHaEK?w=281&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7)
+![aerith](https://pics4.baidu.com/feed/14ce36d3d539b600ae6ca942ad64c52fc75cb75b.jpeg?token=27eb1a61fe6ef1a72fd222c09a8f01c4&s=EB7200C74048155589F4A48303002091)
 
 爱丽丝·盖恩斯巴勒（英文：Aerith Gainsborough；日文：エアリス ゲインズブール），是日本史克威尔公司旗下作品《最终幻想Ⅶ》系列中的女主角之一。性格与外表不同，意外积极大胆，活泼开朗，乐观幽默，有点喜欢小恶作剧，调皮又充满活力，情感细腻温柔。
 
