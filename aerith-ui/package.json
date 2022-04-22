@@ -4,6 +4,7 @@
     "build": "umi build"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.5.0",
     "antd": "^4.19.5",
     "babel-plugin-import": "^1.13.5",
