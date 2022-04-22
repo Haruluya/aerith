@@ -4,7 +4,7 @@
 
 #### Target
 
-此项目为数据库课程设计大作业：基于react的【游戏论坛】web网站。旨在对web技术框架：react，nodejs的学习。
+此项目为2022年数据库课程设计大作业：基于umijs&nestjs的web网站--【Aerith's game Froum】。旨在对web技术框架：react,umjs,nodejs,nestjs的学习。
 
 **注：** 本项目开发从文档分析，组件设计，界面编写到代码测试都由本人独立完成。
 
