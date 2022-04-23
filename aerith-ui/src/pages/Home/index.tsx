@@ -8,6 +8,9 @@ import styles from './index.less';
 import SwiperHeader from './swiperheader';
 
 import AritclPre from '@/components/ArticlePre';
+import CreateArticle from './createArticle';
+import ImgSwiper from '@/components/ImgSwiper';
+import OfficialInfo from '@/components/OfficialInfo';
 
 const Home = () => {
 
@@ -19,6 +22,7 @@ const Home = () => {
         <Layout >
           <div className={styles.homeHeader}>
             <Header className={styles.antHeader}>
+
               <SwiperHeader></SwiperHeader>
             </Header>
           </div>
@@ -35,6 +39,9 @@ const Home = () => {
       </div>
       <div className={styles.homeSider}>
         <Sider  width={300}>
+          <CreateArticle></CreateArticle>
+          <ImgSwiper></ImgSwiper>
+          <OfficialInfo></OfficialInfo>
         </Sider>
       </div>
       </Layout>
