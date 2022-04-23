@@ -1,17 +1,14 @@
+@import '~antd/es/style/themes/default.less';
 .headerRow{
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 0 0 1px #FFFFFF,0 0 0 2px #ddd, 0 0 5px 3px #EEEEEE;
     background-color: white;
-   .heightDiv{
+    
+    .heightDiv{
        height: 62px;
    } 
-   .logo{
-       position: absolute;
-       top: -10px;
-       left: 20px;
-       height: 80px;
-       width: 150px;
-       background-image: url('../../assets/images/TIFA.png');
-       background-size: contain;
-   }
    .headerSearch{
       .userImg{
           display: flex;
@@ -20,3 +17,30 @@
       } 
    }
 }
+
+
+// logo部分。
+.logoContainer{
+    height: 44px;
+    margin-left: 40px;
+    .logo {
+        height: 100%;
+        margin-right: 16px;
+        vertical-align: top;
+
+    }
+    .logo::after{
+        content: '';
+        height: 44px;
+    }
+    
+    .title {
+        position: relative;
+        top: 7px;
+        color: @heading-color;
+        font-weight: 400;
+        font-size: 20px;
+        font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+}
+

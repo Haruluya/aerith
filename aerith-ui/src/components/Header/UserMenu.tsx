@@ -1,22 +1,18 @@
 import React from 'react'
-import {Menu,Avatar} from 'antd'
+import {Avatar,Tooltip} from 'antd'
 import styles from './index.less'
-import {AntDesignOutlined}  from '@ant-design/icons';
+import {Link} from 'umi'
+import {UserOutlined}  from '@ant-design/icons';
 export default function UserMenu() {
   return (
     <div>
-        <Avatar
-            size={{
-            xs: 12,
-            sm: 16,
-            md: 20,
-            lg: 34,
-            xl: 40,
-            xxl: 50,
-            }}
-            icon={<AntDesignOutlined />}
-        />
-
+      <Tooltip title="当前未登录" placement="bottomLeft" defaultVisible>
+        <Link to="/user/login">
+          <span className={styles.avatarContainer}>
+            <Avatar icon={<UserOutlined />} className={styles.avatar} size="large"/>
+          </span>
+        </Link>
+      </Tooltip>
     </div>
   )
 }

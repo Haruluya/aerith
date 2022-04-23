@@ -6,7 +6,7 @@ import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/ico
 export default function CenterMenu() {
   return (
         <div>
-        <Menu mode="horizontal" defaultSelectedKeys={['mail']}>
+        <Menu mode="horizontal" defaultSelectedKeys={['mail']} style={{ height: '100%', border: 0 }}>
             <Menu.SubMenu key="ComponentSubMenu" title="Components" icon={<SettingOutlined />}>
             <Menu.ItemGroup title="Item 1">
             <Menu.Item key="Home" icon={<AppstoreOutlined />}>

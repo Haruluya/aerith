@@ -2,6 +2,8 @@ import { Col,Row,Image,AutoComplete,Input} from 'antd';
 import CenterMenu from './CenterMenu';
 import UserMenu from './UserMenu';
 import styles from './index.less'
+import {Link} from 'umi'
+import logo from '../../assets/images/logo.png'
 const Header = () => {
 
     const options = [
@@ -17,11 +19,16 @@ const Header = () => {
 
     return (
         <>
-            <Row gutter={16} className={styles.headerRow} align="bottom">
+            <Row gutter={16} className={styles.headerRow} align="middle">
                 <div className={styles.heightDiv}></div>
                 <Col span={3}>
+                    <div className={styles.logoContainer}>
+                        <Link to="/">
+                            <img alt="logo" className={styles.logo} src={logo} />
+                            <span className={styles.title}>Aerith</span>
+                        </Link>
+                    </div>
                 </Col>
-                    <div className={styles.logo}></div>
                 <Col span={11}>
                     <CenterMenu></CenterMenu>
                 </Col>
@@ -34,7 +41,7 @@ const Header = () => {
                                 </AutoComplete>
                             </Col>
                             <Col span={8}>
-        `                       <UserMenu></UserMenu>
+                                <UserMenu></UserMenu>
                             </Col>
                         </Row>
                     </div>

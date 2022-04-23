@@ -1,0 +1,53 @@
+.articPrePart{
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+    .articPreContainer{
+        margin: 20px;
+        // 头像行。
+        .avatarContainer{
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            *{
+                margin: 3px;
+            }
+            .focusButton{
+                margin: 0 0 0 530px;
+                *{
+                    margin: 0;
+                } 
+            }
+        }
+        // 标题行。
+        .titleContainer{
+            margin-top: 5px;
+            transform: translateX(3px);
+        }
+        // 内容行。
+        .contentContainer{
+            margin-top: 5px;
+            transform: translateX(12px);
+        }
+        // 图片行。
+        .imageContainer{
+            margin-top: 10px;
+            img{
+                padding-left: 10px ;
+                border-radius: 15px !important;
+            }
+        }
+        // 标签行。
+        .tagContainer{
+            margin-top: 15px;
+            .classTags, .viewTags{
+                display: inline-block;
+            }
+            .viewTags{
+                transform: translateX(530px);
+            }
+        }
+    }
+}
