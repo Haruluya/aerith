@@ -1,13 +1,24 @@
 import { Form, Input, Button, Checkbox,Tabs} from 'antd';
 import { UserOutlined, LockOutlined,AppleOutlined ,AndroidOutlined} from '@ant-design/icons';
 import styles from './index.less'
+import { connect } from 'umi';
 
+
+import { LoginType } from '@/interfaces/user';
+import { useEffect } from 'react';
 
 const { TabPane } = Tabs;
 
 
-const Login = () => {
-  const onFinish = (values:Number) => {
+const Login = (poros:any) => {
+
+    useEffect(()=>{
+        console.log(poros);
+    })
+
+
+  //登录表单。
+  const onFinish = (values:Object) => {
     console.log('Received values of form: ', values);
   };
 
@@ -32,24 +43,30 @@ const Login = () => {
                     }}
                     onFinish={onFinish}
                     size="large"
+                    validateTrigger={['onBlur', 'onChange']}
                     >
                     <Form.Item
-                        name="username"
+                        name="mobile"
                         rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: '手机号非空！',
+                        },
+                        {
+                            pattern: /^1[3-9]\d{9}$/,
+                            message: '手机号格式错误！',
+                            validateTrigger: 'onBlur'
                         },
                         ]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="PhoneNumber" />
                     </Form.Item>
                     <Form.Item
                         name="password"
                         rules={[
                         {
                             required: true,
-                            message: 'Please input your Password!',
+                            message: '密码非空！',
                         },
                         ]}
                     >
@@ -59,15 +76,31 @@ const Login = () => {
                         placeholder="Password"
                         />
                     </Form.Item>
+                    <Form.Item
+                        name="code"
+                        rules={[
+                        { len: 6, message: '格式错误', validateTrigger: 'onBlur' },
+                        { required: true, message: '请输入验证码' }
+                        ]}
+                    >
+                        <Input size="large" placeholder="请输入验证码" maxLength={6} />
+                    </Form.Item>
+
                     <Form.Item>
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                         <Checkbox>Remember me</Checkbox>
                         </Form.Item>
-
                         <a className="login-form-forgot" href="">
                         Forgot password
                         </a>
                     </Form.Item>
+                    <Form.Item name="agree" valuePropName="checked">
+                            <Checkbox className="login-checkbox-label">
+                            我已阅读并同意「用户协议」和「隐私条款」
+                            </Checkbox>
+                    </Form.Item>
+
+                    
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button">
@@ -146,4 +179,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+
+export default connect((state:any)=>({token:state.login.token}))(Login);

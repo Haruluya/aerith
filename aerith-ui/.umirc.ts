@@ -12,6 +12,8 @@ export default defineConfig({
   },
   favicon: '/favicon.ico',
   title:'Aerith',
+  sass: {},
 
   // mfsu: {}
+
 });

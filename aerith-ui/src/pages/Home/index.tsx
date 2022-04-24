@@ -22,12 +22,13 @@ const Home = () => {
       <Layout>
       <div className={styles.homeCenter}>
         <Layout >
+          
+        <Header className={styles.antHeader}>
           <div className={styles.homeHeader}>
-            <Header className={styles.antHeader}>
-
-              <SwiperHeader></SwiperHeader>
-            </Header>
+            <SwiperHeader></SwiperHeader>
           </div>
+        </Header>
+
           <div className={styles.homeContent}>
             <Content>
               <AritclPre></AritclPre>
