@@ -21,26 +21,23 @@
 
 // logo部分。
 .logoContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 44px;
-    margin-left: 40px;
     .logo {
-        height: 100%;
-        margin-right: 16px;
+        position: absolute;
+        height: 150%;
+        left: 20%;
+        top: -50%;
         vertical-align: top;
 
     }
-    .logo::after{
-        content: '';
-        height: 44px;
-    }
     
     .title {
-        position: relative;
-        top: 7px;
-        color: @heading-color;
-        font-weight: 400;
-        font-size: 20px;
-        font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 30px;
+        transform: translateX(70px) translateY(-5px);
     }
 }
 

@@ -8,8 +8,10 @@ export default function IndexPage(props:any) {
     <div className="app">
       <Header></Header>
 
-      { props.children }
-      
+      <div className='center'>
+         { props.children }
+      </div>
+
       <Footer></Footer>
     </div>
   );

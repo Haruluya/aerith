@@ -10,4 +10,8 @@ export default defineConfig({
     immer: true,
     hmr: false,
   },
+  favicon: '/favicon.ico',
+  title:'Aerith',
+
+  // mfsu: {}
 });

@@ -1,4 +1,4 @@
-import { Col,Row,Image,AutoComplete,Input} from 'antd';
+import { Col,Row,Image,AutoComplete,Input,Button} from 'antd';
 import CenterMenu from './CenterMenu';
 import UserMenu from './UserMenu';
 import styles from './index.less'
@@ -25,7 +25,8 @@ const Header = () => {
                     <div className={styles.logoContainer}>
                         <Link to="/">
                             <img alt="logo" className={styles.logo} src={logo} />
-                            <span className={styles.title}>Aerith</span>
+
+                            <Button type="link" block className={styles.title}>Aerith</Button>
                         </Link>
                     </div>
                 </Col>

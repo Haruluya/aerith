@@ -11,6 +11,8 @@ import AritclPre from '@/components/ArticlePre';
 import CreateArticle from './createArticle';
 import ImgSwiper from '@/components/ImgSwiper';
 import OfficialInfo from '@/components/OfficialInfo';
+import RecTopic from '@/components/RecTopic';
+import RecUser from '@/components/RecUser';
 
 const Home = () => {
 
@@ -42,6 +44,8 @@ const Home = () => {
           <CreateArticle></CreateArticle>
           <ImgSwiper></ImgSwiper>
           <OfficialInfo></OfficialInfo>
+          <RecTopic></RecTopic>
+          <RecUser></RecUser>
         </Sider>
       </div>
       </Layout>

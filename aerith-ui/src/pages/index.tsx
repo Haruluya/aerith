@@ -1,7 +1,11 @@
 import React from 'react'
-
+import { history } from 'umi';
 export default function index() {
-  return (
-    <div>index</div>
-  )
+
+     
+    history.push('/home');
+
+    return (
+        <></>
+    )
 }
