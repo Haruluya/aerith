@@ -8,7 +8,7 @@ import {notification} from 'antd'
 
 // axios全局配置。
 axios.defaults.method = 'GET';//设置默认的请求类型为 GET
-axios.defaults.baseURL = 'http://localhost:8081/tifai';//设置基础 URL
+axios.defaults.baseURL = 'http://localhost:8000/aerithi';//设置基础 URL
 axios.defaults.timeout = 5000;
 
 
@@ -36,7 +36,7 @@ requests.interceptors.response.use(
     (res) => {
       //进度条结束
       nprogress.done();
-
+      console.log(res)
       return res.data;
     },
     // 处理所有err。

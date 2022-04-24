@@ -4,7 +4,20 @@ import UserMenu from './UserMenu';
 import styles from './index.less'
 import {Link} from 'umi'
 import logo from '../../assets/images/logo.png'
-const Header = () => {
+import { connect,Loading} from 'umi';
+import {useEffect,FC} from 'react'
+import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
+const Header:FC<HeaderProps> = ({global,dispatch}) => {
+
+    constructor(()=>{
+        console.log(dispatch);
+        if (dispatch){
+            dispatch({
+                type:'global/getUserData'
+            })
+        }
+    })
+
 
     const options = [
         {
@@ -12,6 +25,9 @@ const Header = () => {
           options: [{'xxx':1}]
         },
       ];
+
+
+
 
     const handleSearch = ()=>{
 
@@ -42,7 +58,7 @@ const Header = () => {
                                 </AutoComplete>
                             </Col>
                             <Col span={8}>
-                                <UserMenu></UserMenu>
+                                <UserMenu name={global.userData.nickName}></UserMenu>
                             </Col>
                         </Row>
                     </div>
@@ -52,4 +68,9 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default connect(
+    ({ global,loading }: { global: GlobalStateType; loading: Loading }) => ({
+      global,
+      loading: loading.models.global,
+    }),
+  )(Header);

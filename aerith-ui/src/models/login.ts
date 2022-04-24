@@ -1,7 +1,7 @@
 
-import {login, logout } from '@/services/login';
+import {loginConfirm, logout } from '@/services/login';
 import { message, notification } from 'antd';
-import {LoginType, LoginDvaType} from '@/interfaces/user'
+import {LoginStateType, LoginDvaType,} from '@/interfaces/login'
 
 
 //login的dva模块。 
@@ -15,20 +15,17 @@ const LoginDva: LoginDvaType = {
     // 登录验证。
       *login({ payload }, { call, put }) {
         // 请求验证。
-        const result = yield call(login, payload);
+        const result = yield call(loginConfirm, payload);
         // 响应失败。
         if (!result) {
           message.error('登录失败。');
           return;
         }
-        const loginStatus = {
-          token : result.token
-        };
 
         yield put({
           type: 'setToken',
           payload: {
-            ...loginStatus,
+            token : result.token
           },
 
         });
@@ -49,3 +46,6 @@ const LoginDva: LoginDvaType = {
       },
     },
   };
+
+
+export default LoginDva;

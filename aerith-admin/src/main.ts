@@ -15,7 +15,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('aerith-api', app, document);
   
-  await app.listen(8000);
+  await app.listen(8001);
   // 热重载配置。
   if (module.hot) {
     module.hot.accept();

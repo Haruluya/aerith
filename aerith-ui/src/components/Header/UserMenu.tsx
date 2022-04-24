@@ -3,10 +3,13 @@ import {Avatar,Tooltip} from 'antd'
 import styles from './index.less'
 import {Link} from 'umi'
 import {UserOutlined}  from '@ant-design/icons';
-export default function UserMenu() {
+export default function UserMenu(props:any) {
+
+  const name = props.name? props.name: '未登录';
+
   return (
     <div>
-      <Tooltip title="当前未登录" placement="bottomLeft" defaultVisible>
+      <Tooltip title={name} placement="bottomLeft" defaultVisible>
         <Link to="/login">
           <span className={styles.avatarContainer}>
             <Avatar icon={<UserOutlined />} className={styles.avatar} size="large"/>

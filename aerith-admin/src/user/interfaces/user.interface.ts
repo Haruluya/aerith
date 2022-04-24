@@ -2,7 +2,7 @@
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-export default class User{
+export class User{
     @ApiProperty()
     id:Number;
     @ApiProperty()
@@ -12,4 +12,19 @@ export default class User{
     // signature?: String,
     // email?: String,
     // phone?: String
+}
+
+// 用户登录请求体。
+export class LoginData{
+    @ApiProperty()
+    phone:Number;
+    @ApiProperty()
+    password:string;
+}
+
+// 获取用户信息请求体。
+export class TokenData{
+    @ApiProperty()
+    token:string
+
 }

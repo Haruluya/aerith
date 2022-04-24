@@ -1,25 +1,34 @@
 import { Form, Input, Button, Checkbox,Tabs} from 'antd';
 import { UserOutlined, LockOutlined,AppleOutlined ,AndroidOutlined} from '@ant-design/icons';
 import styles from './index.less'
-import { connect } from 'umi';
+import { connect,Loading} from 'umi';
 
 
-import { LoginType } from '@/interfaces/user';
-import { useEffect } from 'react';
+import { LoginStateType } from '@/interfaces/login';
+import React, { useEffect, FC} from 'react';
+import { LoginProps,LoginForm } from '@/interfaces/login';
+
 
 const { TabPane } = Tabs;
 
 
-const Login = (poros:any) => {
+
+const Login:FC<LoginProps> = ({login,dispatch}) => {
 
     useEffect(()=>{
-        console.log(poros);
+
     })
 
 
   //登录表单。
-  const onFinish = (values:Object) => {
+  const onFinish = (values:LoginForm) => {
     console.log('Received values of form: ', values);
+    if (dispatch){
+        dispatch({
+                type: 'login/login',
+                payload: {phone: values.mobile,password: values.password}
+            })
+    }
   };
 
   return (
@@ -106,7 +115,7 @@ const Login = (poros:any) => {
                         <Button type="primary" htmlType="submit" className="login-form-button">
                         Log in
                         </Button>
-                        Or <a href="">register now!</a>
+                        Or <a href="/register">register now!</a>
                     </Form.Item>
                     </Form>
                 </TabPane>
@@ -180,4 +189,10 @@ const Login = (poros:any) => {
 };
 
 
-export default connect((state:any)=>({token:state.login.token}))(Login);
+
+export default connect(
+    ({ login,loading }: { login: LoginStateType; loading: Loading }) => ({
+      login,
+      loading: loading.models.login,
+    }),
+  )(Login);

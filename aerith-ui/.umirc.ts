@@ -14,6 +14,15 @@ export default defineConfig({
   title:'Aerith',
   sass: {},
 
+  proxy: {
+    '/aerithi': {
+      'target': 'http://localhost:8001/aerithi',
+      'changeOrigin': true,
+      'pathRewrite': { '^/aerithi' : '' },
+    },
+  },
+
+
   // mfsu: {}
 
 });

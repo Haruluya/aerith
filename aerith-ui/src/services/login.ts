@@ -1,5 +1,4 @@
 import {postLoginConfirm} from '@/utils/requests'
-import { LoginParamsType } from '@/interfaces/user'
 import { setToken } from '@/utils/token';
 
 /**
@@ -7,7 +6,7 @@ import { setToken } from '@/utils/token';
  * @param params
  * @return user
  */
-export async function login(params: LoginParamsType) {
+export async function loginConfirm(params: any) {
     const response = await postLoginConfirm(params);
     //响应失败。
     if (!response){
