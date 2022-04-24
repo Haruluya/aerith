@@ -7,7 +7,7 @@ export default function UserMenu() {
   return (
     <div>
       <Tooltip title="当前未登录" placement="bottomLeft" defaultVisible>
-        <Link to="/user/login">
+        <Link to="/login">
           <span className={styles.avatarContainer}>
             <Avatar icon={<UserOutlined />} className={styles.avatar} size="large"/>
           </span>

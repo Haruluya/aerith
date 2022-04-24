@@ -5,8 +5,7 @@ import styles from './index.less'
 
 
 
-import NavCard from '@/components/NavCard';
-import NavCardPanel from './NavCardPanel';
+import NavTagPanel from './NavTagPanel';
 
 
 
@@ -28,7 +27,7 @@ export default function Strategy() {
             <Layout>
                 <div className={styles.strategyContent}>
                     <Content>
-                        <NavCardPanel></NavCardPanel>
+                        <NavTagPanel></NavTagPanel>
                     </Content>
                 </div>
                 <Sider width={300}>
