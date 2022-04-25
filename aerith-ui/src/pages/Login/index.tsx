@@ -22,7 +22,6 @@ const Login:FC<LoginProps> = ({login,dispatch}) => {
 
   //登录表单。
   const onFinish = (values:LoginForm) => {
-    console.log('Received values of form: ', values);
     if (dispatch){
         dispatch({
                 type: 'login/login',

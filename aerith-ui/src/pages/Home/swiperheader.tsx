@@ -37,7 +37,7 @@ const SwiperHeader = () => {
                     return (
                         <div>
                             <SwiperSlide key={index}>
-                                <img className={styles.item} src={value} />
+                                <img className={styles.item} src={value} key={index} />
                             </SwiperSlide>
                         </div>
                     

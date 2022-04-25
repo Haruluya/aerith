@@ -18,10 +18,10 @@ const LoginDva: LoginDvaType = {
         const result = yield call(loginConfirm, payload);
         // 响应失败。
         if (!result) {
-          message.error('登录失败。');
+          message.error('登录失败！');
           return;
         }
-
+        message.success('登录成功！');
         yield put({
           type: 'setToken',
           payload: {
@@ -36,9 +36,9 @@ const LoginDva: LoginDvaType = {
         }
     },
   
+    
     reducers: {
       setToken(state, { payload }) {
-        console.log(payload);
         return {
           ...state,
           token:payload.token

@@ -16,24 +16,22 @@ const GlobalDva: GlobalDvaType = {
 
         *getUserData({ payload }, { call, put }){
             const result = yield call(userData, payload);
-        // 响应失败。
-        if (!result) {
-            return;
-        }
+          // 响应失败。
+          if (!result) {
+              return;
+          }
+          yield put({
+              type: 'setUserData',
+              payload: {
+                  userData:result.userData
+              },
 
-        yield put({
-            type: 'setToken',
-            payload: {
-                userData:result.userData
-            },
-
-        });
+          });
         }
     },
   
     reducers: {
       setUserData(state, { payload }) {
-        console.log(payload);
         return {
           ...state,
           userData:payload.userData

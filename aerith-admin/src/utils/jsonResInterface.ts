@@ -1,18 +1,29 @@
+import {ErrorInfoStructure} from './umiErrorInterface'
 // 响应体的封装。
 
-const JSONResSuccess = (status:Number, message:string, data:Object)=>{
-    return {
-        status,
-        message,
-        data
+
+class JSONRes{
+
+    _success(data){
+        data = data || {message:"OK"}
+        return{
+            success:true,
+            data
+        }
+    }
+
+    _error(errorCode,errorMessage){
+        return {
+            success:false,
+            errorCode,
+            errorMessage,
+            showType:0,
+            host:''
+        }
     }
 }
 
-const JSONResError = (status:Number, message:string)=>{
-    return {
-        status,
-        message,
-    }
-}
 
-export {JSONResError,JSONResSuccess}
+
+
+export {JSONRes}

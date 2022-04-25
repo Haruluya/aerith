@@ -12,7 +12,7 @@ export async function loginConfirm(params: any) {
     if (!response){
         return null;
     } 
-    if (response.status == 200 && response.data.token){
+    if (response.success){
         setToken(response.data.token);
         return response.data;
     }

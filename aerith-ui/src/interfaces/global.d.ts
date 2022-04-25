@@ -1,6 +1,9 @@
 import type { Effect, Reducer } from 'umi';
 import { ConnectProps, Loading, connect } from 'umi';
 
+/**
+ * dva-state部分接口。
+ */
 
 // 全局State接口。
 export interface GlobalStateType{
@@ -25,6 +28,10 @@ export interface HeaderProps extends ConnectProps{
     loading:boolean
 }
 
+
+/**
+ * state中对象接口。
+ */
 
 // 用户基本信息接口。
 export interface UserData{

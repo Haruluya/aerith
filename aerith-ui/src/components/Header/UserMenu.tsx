@@ -3,9 +3,12 @@ import {Avatar,Tooltip} from 'antd'
 import styles from './index.less'
 import {Link} from 'umi'
 import {UserOutlined}  from '@ant-design/icons';
-export default function UserMenu(props:any) {
-
-  const name = props.name? props.name: '未登录';
+import {useEffect,FC} from 'react'
+import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
+import { connect,Loading} from 'umi';
+const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
+  console.log(global);
+  const name =  global.userData.nickName || '未登录';
 
   return (
     <div>
@@ -19,3 +22,10 @@ export default function UserMenu(props:any) {
     </div>
   )
 }
+
+export default connect(
+  ({ global,loading }: { global: GlobalStateType; loading: Loading }) => ({
+    global,
+    loading: loading.models.global,
+  }),
+)(UserMenu);

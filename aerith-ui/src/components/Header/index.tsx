@@ -9,14 +9,14 @@ import {useEffect,FC} from 'react'
 import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
 const Header:FC<HeaderProps> = ({global,dispatch}) => {
 
-    constructor(()=>{
-        console.log(dispatch);
+    useEffect(()=>{
         if (dispatch){
             dispatch({
-                type:'global/getUserData'
-            })
+                    type: 'global/getUserData',
+                    payload: {}
+                })
         }
-    })
+    },[])
 
 
     const options = [
@@ -58,7 +58,7 @@ const Header:FC<HeaderProps> = ({global,dispatch}) => {
                                 </AutoComplete>
                             </Col>
                             <Col span={8}>
-                                <UserMenu name={global.userData.nickName}></UserMenu>
+                                <UserMenu ></UserMenu>
                             </Col>
                         </Row>
                     </div>

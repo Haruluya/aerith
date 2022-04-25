@@ -11,7 +11,7 @@ export async function userData(params: any) {
     if (!response){
         return null;
     } 
-    if (response.status == 200){
+    if (response.success){
         return response.data;
     }
     return null;

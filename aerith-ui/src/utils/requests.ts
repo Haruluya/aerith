@@ -1,32 +1,28 @@
-import requests from "./axiosConfig";
+import request from "./umiRequest"
 
-
-
+// const baseUrl = '';
+const AERITH_API = 'aerithi';
 
 // 获取登录信息。
-export const postLoginConfirm = (data:Object)=>
-    requests({
-        method:'POST',
-        url:`/user/loginConfirm`,
-        data
+export const postLoginConfirm = (data:object)=>
+    request.post(`/${AERITH_API}/user/loginConfirm`,{
+        data,
     })
-
-
 
 
 // 获取用户信息。
 export const getUserData = (token:string)=>
-    requests({
-        method:'POST',
-        url:`/user/userData`,
-        data:token
+    request.post(`/${AERITH_API}/user/userData`,{
+        data : token,
     })
 
 
+// // 退出登录请求。
+// export const postLogout = ()=>
+//     requests({
+//         method:'POST',
+//         url:`/user/logout`,
+//     })
 
-// 退出登录请求。
-export const postLogout = ()=>
-    requests({
-        method:'POST',
-        url:`/user/logout`,
-    })
+
+

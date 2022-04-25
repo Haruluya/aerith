@@ -21,6 +21,7 @@
     "sass": "^1.50.1",
     "swiper": "6.8.4",
     "umi": "^3.5.23",
+    "umi-request": "^1.4.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
