@@ -77,9 +77,12 @@ request.use(async (ctx,next) => {
     await next();
 
     nprogress.done();
+    
     const { res } = ctx;
     const { success = false } = res;
     console.log(res)
+
+    // 无success一律请求失败。
     if(!success){
       notification.error({
         description: '请求失败！',

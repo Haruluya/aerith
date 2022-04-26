@@ -8,21 +8,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import  User from './user.entity';
 
 // jwt.
-import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
-import { PassportModule } from '@nestjs/passport';
+
+import { AuthModule } from 'src/auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
 
 
 // user模块配置。
 @Module({
   imports: [TypeOrmModule.forFeature([User]),
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: jwtConstants.accessTokenExpiresIn },
-    }),],
+            AuthModule],
   controllers: [UserController],
-
   providers: [
     UserService,
   ],

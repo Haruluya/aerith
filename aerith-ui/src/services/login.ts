@@ -12,6 +12,8 @@ export async function loginConfirm(params: any) {
     if (!response){
         return null;
     } 
+    
+    // 无或失败。
     if (response.success){
         setToken(response.data.token);
         return response.data;

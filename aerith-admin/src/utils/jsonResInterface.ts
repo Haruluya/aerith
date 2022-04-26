@@ -8,13 +8,18 @@ class JSONRes{
         data = data || {message:"OK"}
         return{
             success:true,
-            data
+            data,
+            errorCode:0,
+            errorMessage:'',
+            showType:1,
+            host:''
         }
     }
 
     _error(errorCode,errorMessage){
         return {
             success:false,
+            data:{},
             errorCode,
             errorMessage,
             showType:0,

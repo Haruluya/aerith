@@ -6,16 +6,13 @@ import  User  from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertResult, Repository } from 'typeorm';
 
-// jwt验证。
-import { JwtService } from '@nestjs/jwt';
-
 @Injectable()
 export class UserService {
   constructor(
 
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    private readonly jwtService:JwtService,
+
 
   ) {}
 
@@ -35,7 +32,7 @@ export class UserService {
 
 
   // 通过电话号寻找用户。
-   findUserByPhone(phone:string): Promise<User[]>{
+  findUserByPhone(phone:string): Promise<User[]>{
     return this.userRepository.find({
       where:{
         phone,
@@ -44,8 +41,8 @@ export class UserService {
   }
 
   // 通过name寻找用户。
-  async findUserByName(name:string): Promise<User[]>{
-    return await this.userRepository.find({
+  findUserByName(name:string): Promise<User[]>{
+    return this.userRepository.find({
       where:{
         name,
       }
@@ -53,20 +50,14 @@ export class UserService {
   }
 
   // 新增用户。
-  async addUser(user:any):Promise<InsertResult>{
-    return await this.userRepository.insert(user);
+  addUser(user:User):Promise<InsertResult>{
+    return  this.userRepository.insert(user);
   }
 
 
-  async remove(id: string): Promise<void> {
-    await this.userRepository.delete(id);
+ async remove(id: string): Promise<void> {
+    this.userRepository.delete(id);
   }
 
 
-  //基于nest-jwt，通过name,phone创建token。 
-  async getToken(user:{name:string,phone:string}){
-    return {
-      access_token: this.jwtService.sign(user),
-    };
-  }
 }
