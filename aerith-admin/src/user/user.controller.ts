@@ -1,10 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import {ApiTags, ApiOperation} from '@nestjs/swagger'
-import {LoginData,TokenData} from './interfaces/user.interface'
+import {LoginData,TokenData,RegisterData} from './interfaces/user.interface'
 import { JSONRes } from 'src/utils/jsonResInterface';
 
 import { UserService } from './user.service';
 
+//密码加密。
+import {encryptPassword,makeSalt} from '../utils/cryptogram'
 
 const jsonRes = new JSONRes()
 
@@ -16,23 +18,30 @@ export class UserController {
     ){}
 
 
-
+    
     @ApiOperation({ summary: 'Hello' })
     @Post('hello')
     getHello(){
-        const data = this.userService.findAll();
-        return data;
+        const user = this.userService.findAll()
+        return user;
     }
 
-    @ApiOperation({ summary: '处理用户登录请求' })
+    @ApiOperation({ summary: '用户登录' })
     @Post('loginConfirm')
     loginConfirm(@Body() data:LoginData){
-        return jsonRes._success({
-            token:'123456'
-        })
+        //用户是否存在。
+        const user = this.userService.findOne('1');
+        console.log(user)
+        if(!user){
+            return jsonRes._error(400,'用户不存在');
+        }
+        // 加密验证密码。
+        const salt = makeSalt(); 
+        const hashPwd = encryptPassword(data.password, salt);  
+        return jsonRes._success(user)
     }
 
-    @ApiOperation({ summary: '处理用户登录请求' })
+    @ApiOperation({ summary: '获取用户信息' })
     @Post('userData')
     userData(@Body() data:TokenData){
         return jsonRes._success({
@@ -41,6 +50,23 @@ export class UserController {
                 headPortrait: '',
             }
         })
+    }
+
+    @ApiOperation({ summary: '获取用户信息' })
+    @Post('userData')
+    registerConfirm(@Body() data:RegisterData){
+        // 验证是否存在。
+        const user = this.userService.findUserByPhone(data.phone);
+        if (user){
+            jsonRes._error(400,`${data.phone}用户已经存在！`)
+        }
+
+        // 加密密码并存入数据库。
+        const salt = makeSalt(); 
+        const hashPwd = encryptPassword(data.password, salt);  
+        this.userService.addUser(data)
+
+        return jsonRes._success({})
     }
 
 }

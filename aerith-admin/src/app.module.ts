@@ -15,5 +15,7 @@ import { Connection } from 'typeorm';
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private readonly connection: Connection) {}
+  constructor(private readonly connection: Connection) {
+    
+  }
 }

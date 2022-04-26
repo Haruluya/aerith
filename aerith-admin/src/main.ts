@@ -3,8 +3,11 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 declare const module: any;
 
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+
   //配置swagger。
   const options = new DocumentBuilder()
   .setTitle('Aerith\'s game froum')
@@ -16,11 +19,15 @@ async function bootstrap() {
   SwaggerModule.setup('aerith-api', app, document);
   
   await app.listen(8001);
+
+
   // 热重载配置。
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
   }
+
+  
 }
 
 console.log("aerith is running!");

@@ -17,7 +17,7 @@ import { ApiProperty } from '@nestjs/swagger';
 // 用户登录请求体。
 export class LoginData{
     @ApiProperty()
-    phone:Number;
+    phone:string;
     @ApiProperty()
     password:string;
 }
@@ -27,4 +27,15 @@ export class TokenData{
     @ApiProperty()
     token:string
 
+}
+
+
+// 用户注册请求体。
+export class RegisterData{
+    @ApiProperty()
+    name:string;
+    @ApiProperty()
+    password:string;
+    @ApiProperty()
+    phone:string;
 }
