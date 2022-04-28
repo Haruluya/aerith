@@ -1,5 +1,6 @@
 import type { Effect, Reducer } from 'umi';
 import { ConnectProps, Loading, connect } from 'umi';
+import { GlobalStateType } from './global';
 
 
 /**
@@ -21,12 +22,14 @@ export interface LoginDvaType {
     };
     reducers: {
       setToken: Reducer<LoginStateType>;
+      clearToken: Reducer<LoginStateType>;
     };
   }
 
 // login props接口。
 interface LoginProps extends ConnectProps {
   login: LoginStateType;
+  global:GlobalStateType;
   loading: boolean;
 }
 

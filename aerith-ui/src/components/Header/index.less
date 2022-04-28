@@ -41,3 +41,107 @@
     }
 }
 
+// userinfo部分。
+// 
+.userMenuContainer{
+    .userAvatar{
+        cursor: pointer;
+    }
+    .userName{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 14px;
+        
+    }
+
+}
+
+
+.drawerContent{
+    .drawerAvatar{
+        margin: 60px auto;
+        text-align: center;
+    }
+    .signature{
+        width: 300px;
+        height: 120px;
+        margin: 30px auto;
+        padding: 15px;
+        background-color: white;
+        border-radius: 20px;
+        button{
+            transform: translateX(-60px) translateY(-60px);
+        }
+
+        // 阴影。
+        & {
+            border-radius: 10px;
+            margin: 10px;
+        }
+        
+        & {
+            position: relative;
+            box-shadow: 0px 1px 4px rgba(0,0,0,0.3),
+                        0px 0px 20px rgba(0,0,0,0.1) inset;
+        }
+        
+        &::before,
+        &::after {
+           content:"";
+           position:absolute;
+           z-index:-1;
+        }
+        
+        &::before,
+        &::after {
+           content:"";
+           position:absolute;
+           z-index:-1;
+           bottom:15px;
+           left:10px;
+           width:50%;
+           height:20%;
+        }
+        
+        &::before,
+        &::after {
+           content:"";
+           position:absolute;
+           z-index:-1;
+           bottom:15px;
+           left:10px;
+           width:50%;
+           height:20%;
+           box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+           transform:rotate(-3deg);
+        }
+        
+        &::after{
+           right:10px;
+           left:auto;
+           transform:rotate(3deg);
+         }
+    }
+    .tags{
+        width: 300px;
+        height: 120px;
+        margin: 30px auto;
+        padding: 15px;
+        &{
+            background: linear-gradient(#00faff, #00faff) left top,
+                linear-gradient(#00faff, #00faff) left top,
+                linear-gradient(#00faff, #00faff) right top,
+                linear-gradient(#00faff, #00faff) right top,
+                linear-gradient(#00faff, #00faff) left bottom,
+                linear-gradient(#00faff, #00faff) left bottom,
+                linear-gradient(#00faff, #00faff) right bottom,
+                linear-gradient(#00faff, #00faff) right bottom;
+            background-repeat: no-repeat;
+            background-size: 5px 20px, 20px 5px;
+        }
+    }
+
+}
+
+
+
+

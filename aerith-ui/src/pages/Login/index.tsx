@@ -13,7 +13,9 @@ import { useState } from 'react';
 import { LoginStateType,LoginProps } from '@/interfaces/login';
 import {connect,Loading,history} from 'umi';
 import Register from '@/components/Register'
-
+import { GlobalStateType } from '@/interfaces/global';
+import styles from './index.less'
+import { urlencoded } from '@umijs/deps/compiled/express';
 type LoginType = 'phone' | 'account';
 
 const iconStyles: CSSProperties = {
@@ -23,11 +25,14 @@ const iconStyles: CSSProperties = {
   cursor: 'pointer',
 };
 
-const Login:FC<LoginProps> =  ({login,dispatch}) => {
+const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
   const [loginType, setLoginType] = useState<LoginType>('phone');
   return (
-    <div style={{ backgroundColor: '#fcfff7', height: 'calc(100vh - 48px)', margin: -24}}>
+    <div style={{ backgroundColor: '#fcfff7', height: 'calc(100vh - 48px)', margin: -24}} 
+      className = {styles.loginContainer}>
       <LoginFormPage
+        className={styles.loginFormPage}
+      // 表单提交。
         onFinish={async (values)=>{
             console.log(values)
             if (dispatch){
@@ -35,22 +40,26 @@ const Login:FC<LoginProps> =  ({login,dispatch}) => {
                     type: 'login/login',
                     payload:values 
                 })
+                await dispatch({
+                  type: 'global/getUserData',
+                })
                 history.push('/home');
             }
         }}
         backgroundImageUrl="https://w.wallhaven.cc/full/k7/wallhaven-k7gd8q.png"
         logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-        title="Github"
-        subTitle="全球最大同性交友网站"
+        title="Aerith"
+        subTitle="Aerith's game forum."
         activityConfig={{
           style: {
             boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
             color: '#fff',
             borderRadius: 8,
-            backgroundColor: '#1677FF',
+            backgroundImage: "url(https://w.wallhaven.cc/full/6o/wallhaven-6o6lgq.png)",
+            backgroundSize: "contianer"
           },
           title: 'Aerith game froum',
-          subTitle: 'Aerith game forum',
+          subTitle: '新用户注册',
           action: (
             <Register></Register>
           ),
@@ -128,7 +137,7 @@ const Login:FC<LoginProps> =  ({login,dispatch}) => {
                 size: 'large',
                 prefix: <UserOutlined className={'prefixIcon'} />,
               }}
-              placeholder={'用户名: admin or user'}
+              placeholder={'用户名:'}
               rules={[
                 {
                   required: true,
@@ -142,7 +151,7 @@ const Login:FC<LoginProps> =  ({login,dispatch}) => {
                 size: 'large',
                 prefix: <LockOutlined className={'prefixIcon'} />,
               }}
-              placeholder={'密码: ant.design'}
+              placeholder={'密码: '}
               rules={[
                 {
                   required: true,
@@ -195,7 +204,7 @@ const Login:FC<LoginProps> =  ({login,dispatch}) => {
                 },
               ]}
               onGetCaptcha={async () => {
-                message.success('获取验证码成功！验证码为：1234');
+                message.success('获取验证码成功！');
               }}
             />
           </>
@@ -221,12 +230,12 @@ const Login:FC<LoginProps> =  ({login,dispatch}) => {
   );
 };
 
-// 添加wrapper。
-Login.wrappers = ['../../wrappers/loginAuth']
+
 
 export default connect(
-    ({ login,loading }: { login: LoginStateType; loading: Loading }) => ({
+    ({ login,global,loading }: { login: LoginStateType;global:GlobalStateType, loading: Loading }) => ({
       login,
+      global,
       loading: loading.models.global,
     }),
   )(Login);

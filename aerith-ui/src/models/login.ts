@@ -31,8 +31,18 @@ const LoginDva: LoginDvaType = {
         });
       },
   
-      *logout(_, { put }) {
-
+      *logout(_, { call,put }) {
+        const result = yield call(logout);
+        if (!result) {
+          message.error('退出失败！');
+          return;
+        }
+        message.success('退出成功！');
+        yield put({
+          type: 'clearToken',
+          payload: {
+          },
+        });
       },
 
       *register({ payload }, { call, put }){
@@ -57,6 +67,12 @@ const LoginDva: LoginDvaType = {
           token:payload.token
         };
       },
+      clearToken(state){
+        return{
+          ...state,
+          token:''
+        }
+      }
     },
   };
 

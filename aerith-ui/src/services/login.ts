@@ -1,5 +1,5 @@
 import {postLoginConfirm,postRegisterConfirm} from '@/utils/requests'
-import { setToken } from '@/utils/token';
+import { setToken,removeToken } from '@/utils/token';
 
 /**
  * 用户登录
@@ -37,7 +37,8 @@ export async function registerConfirm(params:any) {
  * 用户退出登录
  */
 export function logout() {
-
+    removeToken();
+    return true;
 }
 
 /**

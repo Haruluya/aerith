@@ -2,19 +2,20 @@
 import {userData} from '@/services/user';
 import { message, notification } from 'antd';
 import { UserData,GlobalDvaType } from '@/interfaces/global';
-
+import { getToken } from '@/utils/token';
 //global的dva模块。 
 const GlobalDva: GlobalDvaType = {
     namespace: 'global',
     state: {
       userData: {
-          username:'',
-      },
+        username:''
+      }
     },
     effects: {
 
         *getUserData({ payload }, { call, put }){
-            const result = yield call(userData, payload);
+        
+          const result = yield call(userData, payload);
           // 响应失败。
           if (!result) {
               return;
