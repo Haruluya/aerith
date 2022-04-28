@@ -28,6 +28,12 @@ export interface HeaderProps extends ConnectProps{
     loading:boolean
 }
 
+// Auth部分props接口。
+export interface AuthProps extends ConnectProps{
+    global:GlobalStateType,
+    loading:boolean
+}
+
 
 /**
  * state中对象接口。
@@ -35,7 +41,6 @@ export interface HeaderProps extends ConnectProps{
 
 // 用户基本信息接口。
 export interface UserData{
-    nickName:string,
-    headPortrait:string
+    username:string,
 }
 

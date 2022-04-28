@@ -17,6 +17,7 @@ export interface LoginDvaType {
     effects: {
       login: Effect;
       logout: Effect;
+      register:Effect;
     };
     reducers: {
       setToken: Reducer<LoginStateType>;

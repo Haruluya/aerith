@@ -8,8 +8,7 @@ const GlobalDva: GlobalDvaType = {
     namespace: 'global',
     state: {
       userData: {
-          nickName:'',
-          headPortrait: '',
+          username:'',
       },
     },
     effects: {

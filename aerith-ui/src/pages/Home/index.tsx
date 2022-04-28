@@ -14,8 +14,7 @@ import OfficialInfo from '@/components/OfficialInfo';
 import RecTopic from '@/components/RecTopic';
 import RecUser from '@/components/RecUser';
 
-const Home = () => {
-
+const Home = (props:any) => {
 
   return (
     <div className={styles.homePart}>

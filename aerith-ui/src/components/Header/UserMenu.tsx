@@ -8,7 +8,7 @@ import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
 import { connect,Loading} from 'umi';
 const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
   console.log(global);
-  const name =  global.userData.nickName || '未登录';
+  const name =  global.userData.username || '未登录';
 
   return (
     <div>

@@ -35,7 +35,7 @@ const SwiperHeader = () => {
                  >
                 {partnerLogo.map((value, index) => {
                     return (
-                        <div>
+                        <div key={index}>
                             <SwiperSlide key={index}>
                                 <img className={styles.item} src={value} key={index} />
                             </SwiperSlide>

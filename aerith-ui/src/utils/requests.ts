@@ -13,10 +13,17 @@ export const postLoginConfirm = (data:object)=>
 // 获取用户信息。
 export const getUserData = (token:string)=>
     request.post(`/${AERITH_API}/user/userData`,{
-        data : token,
+        headers:{
+            'Authorization': 'Bearer ' + token
+        }
     })
 
 
+// 用户登录。
+export const postRegisterConfirm = (data:object)=>
+    request.post(`/${AERITH_API}/user/registerConfirm`,{
+        data,
+    })
 // // 退出登录请求。
 // export const postLogout = ()=>
 //     requests({

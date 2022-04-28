@@ -1,5 +1,5 @@
 
-import {loginConfirm, logout } from '@/services/login';
+import {loginConfirm, logout,registerConfirm } from '@/services/login';
 import { message, notification } from 'antd';
 import {LoginStateType, LoginDvaType,} from '@/interfaces/login'
 
@@ -31,9 +31,22 @@ const LoginDva: LoginDvaType = {
         });
       },
   
-        *logout(_, { put }) {
+      *logout(_, { put }) {
 
+      },
+
+      *register({ payload }, { call, put }){
+        const result = yield call(registerConfirm, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('注册失败！');
+          return;
         }
+        message.success('注册成功！');
+      }
+
+
+        
     },
   
     

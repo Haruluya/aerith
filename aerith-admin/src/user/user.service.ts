@@ -49,6 +49,15 @@ export class UserService {
     })
   }
 
+    // 通过ID寻找用户。
+    findUserById(id:number): Promise<User[]>{
+      return this.userRepository.find({
+        where:{
+          id,
+        }
+      })
+    }
+
   // 新增用户。
   addUser(user:User):Promise<InsertResult>{
     return  this.userRepository.insert(user);

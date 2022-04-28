@@ -1,4 +1,4 @@
-import {postLoginConfirm} from '@/utils/requests'
+import {postLoginConfirm,postRegisterConfirm} from '@/utils/requests'
 import { setToken } from '@/utils/token';
 
 /**
@@ -12,14 +12,25 @@ export async function loginConfirm(params: any) {
     if (!response){
         return null;
     } 
-    
-    // 无或失败。
     if (response.success){
         setToken(response.data.token);
         return response.data;
     }
     return null;
     
+}
+
+
+export async function registerConfirm(params:any) {
+    const response = await postRegisterConfirm(params);
+    //响应失败。
+    if (!response){
+        return null;
+    }   
+    if (response.success){
+        return response.data;
+    }
+    return null;
 }
 
 /**

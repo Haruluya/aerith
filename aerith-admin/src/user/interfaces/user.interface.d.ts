@@ -28,9 +28,12 @@ class ErrorInfoStructure {
 // 用户登录请求体。
 export class LoginData{
     @ApiProperty()
-    phone:string;
+    mobile?:string;
     @ApiProperty()
-    password:string;
+    username?:string;
+    @ApiProperty()
+    password?:string;
+
 }
 
 // 获取用户信息请求体。
