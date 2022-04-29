@@ -49,7 +49,7 @@ const Header:FC<HeaderProps> = ({global,dispatch}) => {
                 <Col span={11}>
                     <CenterMenu></CenterMenu>
                 </Col>
-                <Col span={9}>
+                <Col span={10}>
                     <div className={styles.headerSearch} >
                         <Row gutter={20} align="bottom">
                             <Col span={16}>

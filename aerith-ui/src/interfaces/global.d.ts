@@ -42,5 +42,13 @@ export interface AuthProps extends ConnectProps{
 // 用户基本信息接口。
 export interface UserData{
     username:string,
+    avatar?:string,
+    nickname?:string,
+    background_img?:string,
+    email?:string,
+    level?:number,
+    score?:number,
+    signature?:string,
+    tags?:Array<string>,
 }
 

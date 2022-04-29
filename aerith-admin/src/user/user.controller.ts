@@ -57,8 +57,8 @@ export class UserController {
         // 登录成功返回token。
         const token = await this.authService.getToken({
             id : user.id,
-            name:user.name,
-            phone:user.phone,
+            username:user.username,
+            mobile:user.mobile,
             password:user.password,
             salt:user.salt
         });
@@ -75,17 +75,17 @@ export class UserController {
         if (!request.user){
             return jsonRes._error(400,"未知错误！")
         }
-        if (!request.user.name){
+        if (!request.user.username){
             return jsonRes._success({
                 userData: {
                     username: "",
                 }
             })
         }
-        const user = (await this.userService.findUserByName(request.user.name))[0];
+        const user = (await this.userService.findUserByName(request.user.username))[0];
         return jsonRes._success({
             userData: {
-                username: user.name,
+                username: user.username,
             }
         })
     }
@@ -95,18 +95,18 @@ export class UserController {
     @Post('registerConfirm')
     async registerConfirm(@Body() data:RegisterData){
         // 验证是否存在。
-        const user = (await this.userService.findUserByName(data.name))[0];
+        const user = (await this.userService.findUserByName(data.username))[0];
         if (user){
-            return jsonRes._error(400,`${data.phone}用户已经存在！`)
+            return jsonRes._error(400,`${data.mobile}用户已经存在！`)
         }
 
         // 加密密码并存入数据库。
         const salt = makeSalt(); 
         const hashPwd = encryptPassword(data.password, salt);  
         this.userService.addUser({
-            name:data.name,
+            username:data.username,
             password:hashPwd,
-            phone:data.phone,
+            mobile:data.mobile,
             salt,
         })
 

@@ -32,19 +32,19 @@ export class UserService {
 
 
   // 通过电话号寻找用户。
-  findUserByPhone(phone:string): Promise<User[]>{
+  findUserByPhone(mobile:string): Promise<User[]>{
     return this.userRepository.find({
       where:{
-        phone,
+        mobile,
       }
     })
   }
 
   // 通过name寻找用户。
-  findUserByName(name:string): Promise<User[]>{
+  findUserByName(username:string): Promise<User[]>{
     return this.userRepository.find({
       where:{
-        name,
+        username,
       }
     })
   }

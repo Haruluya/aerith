@@ -49,13 +49,13 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
       >
         <ProFormText
           width="md"
-          name="name"
+          name="username"
           label="账号"
           tooltip="最长为 24 位"
           placeholder="请输入名称"
         />
 
-        <ProFormText width="md" name="phone" label="手机号" placeholder="请输入名称" />
+        <ProFormText width="md" name="mobile" label="手机号" placeholder="请输入名称" />
         <ProFormText width="md" name="password" label="密码" placeholder="请输入名称" />
       </ModalForm>
     </Space>

@@ -40,6 +40,10 @@ const routes:Array<object> =
                     path: '/strategy', 
                     component: 'Strategy' 
                 },
+                { 
+                    path: '/userinfo', 
+                    component: 'UserInfo' 
+                },
                 {
                     component: './404',
                 },

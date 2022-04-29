@@ -47,11 +47,11 @@ export class TokenData{
 // 用户注册请求体。
 export class RegisterData{
     @ApiProperty()
-    name:string;
+    username:string;
     @ApiProperty()
     password:string;
     @ApiProperty()
-    phone:string;
+    mobile:string;
 }
 
 

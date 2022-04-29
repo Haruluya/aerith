@@ -44,8 +44,51 @@
 // userinfo部分。
 // 
 .userMenuContainer{
+
     .userAvatar{
         cursor: pointer;
+        width: 100%;
+        height: 40px;
+        .avatar{
+            position: absolute;
+            top: -4px;
+        }
+
+
+        .popPanel{
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            width: 250px;
+            height: 250px;
+            background-color: white;
+            border-radius: 0 0 15px 15px; 
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            .userInfo{
+                transform: translateY(-20px);
+                text-align: center;
+                .userName{
+                    font-size:18px;
+                    color: red;
+                }
+            }
+            .selfInfoPanel{
+                button{
+                    font-size: 18px;
+                    &:hover{
+                        background-color: #00c3ff;
+                    }
+                }
+            }
+
+        }
+
+
     }
     .userName{
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -55,7 +98,7 @@
 
 }
 
-
+// 抽屉部分。
 .drawerContent{
     .drawerAvatar{
         margin: 60px auto;

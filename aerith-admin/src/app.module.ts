@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ArticleModule } from './article/article.module';
 import { CommentModule } from './comment/comment.module';
 import { FocusModule } from './focus/focus.module';
+import { TagsModule } from './tags/tags.module';
 
 
 
@@ -18,7 +19,8 @@ import { FocusModule } from './focus/focus.module';
     AuthModule,
     ArticleModule,
     CommentModule,
-    FocusModule,],
+    FocusModule,
+    TagsModule,],
   controllers: [AppController],
   providers: [AppService,],
 })

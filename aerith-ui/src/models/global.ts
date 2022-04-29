@@ -8,7 +8,15 @@ const GlobalDva: GlobalDvaType = {
     namespace: 'global',
     state: {
       userData: {
-        username:''
+        username:'',
+        avatar:'',
+        nickname:'',
+        background_img:'',
+        email:'',
+        score: 0,
+        level:0,
+        signature:'',
+        tags:['你的标签'],
       }
     },
     effects: {
