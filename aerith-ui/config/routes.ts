@@ -6,6 +6,10 @@ const routes:Array<object> =
             component: '../layouts/index',
             routes:[
                 { 
+                    path: '/', 
+                    component: 'Home' 
+                },
+                { 
                     path: '/home', 
                     component: 'Home' 
                 },

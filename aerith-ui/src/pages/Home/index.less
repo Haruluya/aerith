@@ -7,6 +7,9 @@
             margin: 15px,0;
             background-color: white;
             border-radius: 20px;
+
+            box-shadow:rgba(18, 18, 18, 0.1) 0px 1px 3px 0px;
+
             .antHeader{
                 height: auto !important;
                 background-color: white;
@@ -18,6 +21,9 @@
             overflow: hidden;
             // 为什么无效？？？？？？？
             // margin: 15px, 0 !important;
+
+    
+
             transform: translateY(30px);
 
 
@@ -38,6 +44,7 @@
 .swiper {
     width: 700px;
     min-width: 700px;
+    
     // height: 300px;
 
     position: relative;
@@ -75,10 +82,47 @@
 
 //   createArticle部分。
 .createArticlePart{
+    box-shadow:rgba(18, 18, 18, 0.1) 0px 1px 3px 0px;
     height: 290px;
-
-    padding: 0 10px;
+    padding: 20px;
     background-color: white;
     border-radius: 20px;
+    .title{
+        .level{
+            margin-left: 10px;
+            color: red;
+        }
+    }
+    .tags{
+        margin-top: 20px;
+        transform: translateX(-10px);
+    }
+    .index{
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        .indexContainer{
+            width: 50%;
+            .indexTitle{
+                font-size: 14px;
 
+                transform: translateY(8px);
+            }
+            .indexContent{
+                font-size: 23px;
+            }
+        }
+
+    }
+    .write{
+        width: 100%;
+        margin: 35px auto;
+        button{
+            height: 50%;
+            width: 100%;
+            font-size: 18px;
+        }
+    }
 }
