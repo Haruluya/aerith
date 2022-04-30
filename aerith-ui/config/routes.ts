@@ -41,8 +41,48 @@ const routes:Array<object> =
                     component: 'Strategy' 
                 },
                 { 
-                    path: '/userinfo', 
-                    component: 'UserInfo' 
+                    path: '/userinfo',
+                    wrappers: [
+                        '@/wrappers/loginAuth',
+                    ], 
+                    component: 'UserInfo',
+                    routes:[
+                        {
+                            path: '/userinfo/aboutaerith',
+                            component: './UserInfo/AboutAerith'
+                        },
+                        {
+                            path: '/userinfo/aboutharuluya',
+                            component: './UserInfo/AboutHaruluya'
+                        },
+                        {
+                            path: '/userinfo/mycomment',
+                            component: './UserInfo/MyComment'
+                        },
+                        {
+                            path: '/userinfo/myfocus',
+                            component: './UserInfo/MyFocus',
+                        },
+                        {
+                            path: '/userinfo/myfans',
+                            component: './UserInfo/MyFans',
+                        },
+                        {
+                            path: '/userinfo/myinfo',
+                            component: './UserInfo/MyInfo',
+                        },
+                        {
+                            path: '/userinfo/mylevel',
+                            component: './UserInfo/MyLevel',
+                        },
+                        {
+                            path: '/userinfo/mypost',
+                            component: './UserInfo/MyPost'
+                        },
+                        {
+                            component:'./404'
+                        }
+                    ]
                 },
                 {
                     component: './404',

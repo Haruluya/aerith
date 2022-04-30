@@ -45,6 +45,7 @@ interface RequestError extends Error {
   */
  const errorHandler = (error: { response: Response }): Response => {
    const { response } = error;
+   console.log("错误响应",error);
     // 响应存在。
    if (response && response.status) {
      const errorText = codeMessage[response.status] || response.statusText;
@@ -75,18 +76,17 @@ request.use(async (ctx,next) => {
     nprogress.start();
 
     await next();
-
     nprogress.done();
-    
     const { res } = ctx;
+    console.log(res,"返回响应");
     const { success = false } = res;
-    console.log(res)
+
 
     // 无success一律请求失败。
     if(!success){
       notification.error({
         description: '请求失败！',
-        message: '请求失败',
+        message: `请求失败: ${res.errorMessage}`,
         }); 
     }
 });

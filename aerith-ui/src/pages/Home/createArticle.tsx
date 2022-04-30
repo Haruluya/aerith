@@ -15,6 +15,7 @@ export default function createArticle() {
           LV99
         </span>
       </div>
+      <Divider/>
       <Space size={0} split={<span></span>} className={styles.tags}>
         <Button type='link'>
           <div className={styles.tag}>
@@ -72,6 +73,7 @@ export default function createArticle() {
           </div>
         </div>
       </div>
+      <Divider/>
       <div className={styles.write}>
         <Button type="primary" ghost block>发布帖子<RightOutlined /></Button>
       </div>

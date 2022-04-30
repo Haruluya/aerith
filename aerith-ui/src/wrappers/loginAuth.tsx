@@ -5,11 +5,16 @@ import { connect,Loading} from 'umi';
 import {useEffect,FC} from 'react'
 import { GlobalStateType ,AuthProps} from '@/interfaces/global';
 
-const LoginAuth:FC<AuthProps> =  ({global,children}) => {
-    console.log(global.userData.username);
-    if (global.userData.username){
-        return <Redirect to="/home"/>;
+const LoginAuth:FC<AuthProps> =  ({global,location,children}) => {
+    if (global.userData.islogin){
+        if (location.pathname == '/login'){
+            return <Redirect to="/home"/>;
+        }
+        return <div>{children}</div>
     }else{
+        if (location.pathname == '/userinfo'){
+            return <Redirect to="/404"/>;
+        }
         return <div>{ children }</div>;
     }
 

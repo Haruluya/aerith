@@ -83,6 +83,7 @@ export class UserController {
             })
         }
         const user = (await this.userService.findUserByName(request.user.username))[0];
+        console.log(user)
         return jsonRes._success({
             userData: {
                 id: user.id,
@@ -117,6 +118,7 @@ export class UserController {
             username:data.username,
             password:hashPwd,
             mobile:data.mobile,
+            avatar:data.avatar,
             salt,
         })
 

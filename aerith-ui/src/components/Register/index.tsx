@@ -57,6 +57,7 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
 
         <ProFormText width="md" name="mobile" label="手机号" placeholder="请输入名称" />
         <ProFormText width="md" name="password" label="密码" placeholder="请输入名称" />
+        <ProFormText width="md" name="avatar" label="头像" placeholder="请输入图片url" />
       </ModalForm>
     </Space>
   );

@@ -40,6 +40,12 @@ export interface UserInfoProps extends ConnectProps{
     loading:boolean
 }
 
+// 主页部分props接口。
+export interface LayoutProps extends ConnectProps{
+    global:GlobalStateType,
+    loading:boolean
+}
+
 /**
  * state中对象接口。
  */
@@ -56,5 +62,6 @@ export interface UserData{
     score?:number,
     signature?:string,
     tags?:Array<string>,
+    islogin:boolean
 }
 

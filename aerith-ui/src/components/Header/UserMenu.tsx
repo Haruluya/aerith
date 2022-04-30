@@ -9,13 +9,15 @@ import { connect,Loading,history} from 'umi';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { confirm } = Modal;
 const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
-  console.log(global);
   // 用户信息。
   const name =  global.userData.username;
   const avatar = global.userData.avatar;
   const signature = global.userData.signature;
-  const usertags = global.userData.tags;
   const nickName = global.userData.nickname;
+
+  const usertags = global.userData.tags;
+
+
   // 退出登录。
   const logout = async ()=>{
     if (dispatch){
@@ -51,7 +53,7 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
 
   // tags
   const [state, setState] = useState({
-    tags:usertags,
+    tags: usertags,
     inputVisible: false,
     inputValue: '',
     editInputIndex: -1,

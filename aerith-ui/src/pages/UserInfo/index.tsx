@@ -29,6 +29,9 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
     "UsergroupAddOutlined","UserSwitchOutlined","DingtalkOutlined","",
     "GithubOutlined","RedditOutlined"
   ]
+  const pathMenu:Array<string> = [
+    "mypost","mycomment","myinfo","","myfans","myfocus","mylevel","","aboutharuluya","aboutaerith"
+  ]
 
   const iconCreate = (name:string)=>
     React.createElement((Icon as any)[name],{
@@ -67,7 +70,7 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
             <Header >
               <div className={styles.header}>
                 <div className={styles.avatar}>
-                <Avatar size={120}>
+                <Avatar size={120} src={avatar}>
                   
                   </Avatar>
                 </div>
@@ -113,7 +116,7 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
                         {value != "|" &&
                             (
                               <Button type="text" icon={iconCreate(iconMenu[index])} 
-                                  onClick={()=>{history.push('/')}} 
+                                  onClick={()=>{history.push(`/userinfo/${pathMenu[index]}`)}} 
                                   className={styles.infoMenuButton}>
                                 <span >{value}</span>
                               </Button>

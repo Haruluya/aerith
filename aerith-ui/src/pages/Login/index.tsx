@@ -43,7 +43,10 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
                 await dispatch({
                   type: 'global/getUserData',
                 })
-                history.push('/home');
+                console.log(global.userData);
+                if(global.userData.islogin){
+                  history.push('/home');
+                }
             }
         }}
         backgroundImageUrl="https://w.wallhaven.cc/full/k7/wallhaven-k7gd8q.png"

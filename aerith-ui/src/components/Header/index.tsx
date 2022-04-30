@@ -42,7 +42,6 @@ const Header:FC<HeaderProps> = ({global,dispatch}) => {
                     <div className={styles.logoContainer}>
                         <Link to="/">
                             <img alt="logo" className={styles.logo} src={logo} />
-
                             <Button type="link" block className={styles.title}>Aerith</Button>
                         </Link>
                     </div>

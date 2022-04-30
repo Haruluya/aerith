@@ -41,6 +41,8 @@ export class RegisterData{
     password:string;
     @ApiProperty()
     mobile:string;
+    @ApiProperty()
+    avatar:string;
 }
 
 

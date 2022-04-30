@@ -8,6 +8,8 @@
 
 **注：** 本项目开发从文档分析，组件设计，界面编写到代码测试都由本人独立完成。
 
+![haruluya](https://img.shields.io/badge/X-Haruluya-brightgreen)	![★: React (shields.io)](https://img.shields.io/badge/★-React-red)	![★: Mysql (shields.io)](https://img.shields.io/badge/★-MySql-red)	![★: Typescript (shields.io)](https://img.shields.io/badge/★-Typescript-green)	![★: Umijs (shields.io)](https://img.shields.io/badge/★-Umijs-yellow)	![★: Nestjs (shields.io)](https://img.shields.io/badge/★-Nestjs-yellow)	![★: Hooks (shields.io)](https://img.shields.io/badge/★-Hooks-blue)	![★: Less (shields.io)](https://img.shields.io/badge/★-Less-green)
+
 #### Name
 
 **Aerith：**
