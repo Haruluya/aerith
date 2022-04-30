@@ -10,6 +10,7 @@ const Footer = () => {
       <div className={styles.footerContainer}>
         <DefaultFooter
           copyright="2022 Aerith's game froum | 暂未备案"
+          className={styles.footer}
           links={[
             {
               key: 'github',
@@ -35,8 +36,8 @@ const Footer = () => {
               key: 'info',
               title: (
                 <>
-                <Tooltip title="关于免责声明...">
-                  <InfoCircleOutlined /> 免责声明
+                <Tooltip title="关于Aerith...">
+                  <InfoCircleOutlined /> Aerith
                 </Tooltip>
                 </>
               ),

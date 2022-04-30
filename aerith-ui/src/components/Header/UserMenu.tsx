@@ -1,19 +1,20 @@
 import React,{useRef, useState} from 'react'
-import {Avatar,Button,Tooltip,Row,Col,Drawer,Input,Tag, Divider} from 'antd'
+import {Avatar,Button,Tooltip,Row,Col,Drawer,Input,Tag, Divider,Modal} from 'antd'
 import styles from './index.less'
 import {Link} from 'umi'
 import {UserOutlined,PlusOutlined}  from '@ant-design/icons';
 import {useEffect,FC} from 'react'
 import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
 import { connect,Loading,history} from 'umi';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+const { confirm } = Modal;
 const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
   console.log(global);
   // 用户信息。
-  const name =  global.userData.username || '未登录';
-  const avatar = global.userData.avatar || 'https://avatars.githubusercontent.com/u/91101915?v=4';
-  const signature = global.userData.signature || '这个人还没有个性签名嗷...';
-  const usertags = global.userData.tags || [];
-  const level = global.userData.level;
+  const name =  global.userData.username;
+  const avatar = global.userData.avatar;
+  const signature = global.userData.signature;
+  const usertags = global.userData.tags;
   const nickName = global.userData.nickname;
   // 退出登录。
   const logout = async ()=>{
@@ -25,6 +26,19 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
         type:"global/getUserData"
       })
     }
+  }
+  const logoutConfirm = ()=>{
+    // 确认提示。
+    confirm({
+      title: '退出登录',
+      icon: <ExclamationCircleOutlined/>,
+      content: '你确定要退出吗',
+      onOk() {
+        logout();
+      },
+      onCancel() {
+      },
+    });
   }
   // 显示抽屉。
   const [visible, setVisible] = useState(false);
@@ -156,7 +170,7 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
                     <div className={styles.selfInfoPanel}>
                       <Button type='text' block onClick={showDrawer}>我的信息</Button>
                       <Button type='text' block><Link to={'/userinfo'}>个人中心</Link></Button>
-                      <Button type='text' block onClick={logout}>退出登录</Button>
+                      <Button type='text' block onClick={logoutConfirm}>退出登录</Button>
                     </div>
                   </div>
                 )
@@ -185,13 +199,16 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
                 size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
                 src={avatar} 
                 >
-
                 </Avatar>
+                <Divider/>
+                <div className={styles.nickname}>{nickName}</div>
               </div>
+
               <div className={styles.signature}>
                 <span>{signature}</span>
                 <Button>修改</Button>
               </div>
+              <Divider/>
               <div className={styles.tags}>
                 {tags.map((tag, index) => {
                   if (editInputIndex === index) {

@@ -42,7 +42,7 @@ export class UserController {
         }
         // 手机号登录。
         else if (data.mobile){
-            user = (await this.userService.findUserByPhone(data.mobile))[0];
+            user = (await this.userService.findUserByMobile(data.mobile))[0];
         }
         if(!user){
             return jsonRes._error(400,'用户不存在！');
@@ -85,7 +85,17 @@ export class UserController {
         const user = (await this.userService.findUserByName(request.user.username))[0];
         return jsonRes._success({
             userData: {
+                id: user.id,
                 username: user.username,
+                nickname: user.nickname,
+                avatar: user.avatar,
+                email:user.email,
+                level: user.level,
+                mobile: user.mobile,
+                role: user.role,
+                score: user.score,
+                tags: user.tags,
+                signature: user.signature,
             }
         })
     }

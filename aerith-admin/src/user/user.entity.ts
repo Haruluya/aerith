@@ -18,7 +18,7 @@ export default class User {
   password: String;
 
   @Column({nullable: true})
-  nickname?: String;
+  nickname?: String
 
   @Column({nullable: true})
   avatar?:String;
@@ -33,11 +33,14 @@ export default class User {
   tags?:String;
 
   @Column({nullable: true})
-  level?:String;
+  level?:Number = 0;
 
   @Column({nullable: true})
   score?:Number;
 
   @Column({nullable: true})
   role?: String;
+
+  @Column({nullable: true,default: '这个人还没有个性签名嗷...'})
+  signature?: String;
 }

@@ -40,7 +40,7 @@ const Home = (props:any) => {
         </Layout>
       </div>
       <div className={styles.homeSider}>
-        <Sider  width={300}>
+        <Sider  width={300} style={{backgroundColor:'#f0f2f5'}}>
           <CreateArticle></CreateArticle>
           <ImgSwiper></ImgSwiper>
           <OfficialInfo></OfficialInfo>

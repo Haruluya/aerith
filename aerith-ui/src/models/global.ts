@@ -8,6 +8,7 @@ const GlobalDva: GlobalDvaType = {
     namespace: 'global',
     state: {
       userData: {
+        id:0,
         username:'',
         avatar:'',
         nickname:'',
@@ -16,7 +17,7 @@ const GlobalDva: GlobalDvaType = {
         score: 0,
         level:0,
         signature:'',
-        tags:['你的标签'],
+        tags:[''],
       }
     },
     effects: {
@@ -28,10 +29,18 @@ const GlobalDva: GlobalDvaType = {
           if (!result) {
               return;
           }
+          const userDataResult = {
+            username:result.username || "未登录",
+            nickname:result.nickname || "aerith",
+            avatar:result.avatar || "https://avatars.githubusercontent.com/u/91101915?v=4",
+            signature:result.signature || "",
+            background_img:result.background_img || "",
+            tags:result.tags? (result.tags.spilt(' ')).append('你的标签') : ["你的标签"],
+          }
           yield put({
               type: 'setUserData',
               payload: {
-                  userData:result.userData
+                  userData:userDataResult,
               },
 
           });

@@ -1,4 +1,4 @@
-import { Col,Row,Image,AutoComplete,Input,Button} from 'antd';
+import { Col,Row,Modal,AutoComplete,Input,Button} from 'antd';
 import CenterMenu from './CenterMenu';
 import UserMenu from './UserMenu';
 import styles from './index.less'
@@ -6,6 +6,7 @@ import {Link} from 'umi'
 import logo from '../../assets/images/logo.png'
 import { connect,Loading} from 'umi';
 import {useEffect,FC} from 'react'
+
 import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
 const Header:FC<HeaderProps> = ({global,dispatch}) => {
 
