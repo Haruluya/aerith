@@ -3,7 +3,13 @@ import styles from './index.less'
 import { SnippetsTwoTone ,EditTwoTone,RightOutlined,CameraTwoTone,ContactsTwoTone,ContainerTwoTone} from '@ant-design/icons'
 import { Button, Space ,Divider} from 'antd'
 import { history } from 'umi'
-export default function createArticle() {
+import { connect,Loading} from 'umi';
+import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
+import {useEffect,FC} from 'react'
+const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
+  
+
+  
   return (
     <div className={styles.createArticlePart}>
       <div className={styles.title}>
@@ -11,9 +17,20 @@ export default function createArticle() {
         <span>
           论坛发帖中心
         </span>
-        <span className={styles.level}>
-          LV99
-        </span>
+        {global.userData.islogin &&
+          (
+            <span className={styles.level}>
+            LV0
+          </span>
+          )
+        }
+        {!global.userData.islogin &&
+          (
+            <span className={styles.level}>
+            LV ?
+          </span>
+          )
+        }
       </div>
       <Divider/>
       <Space size={0} split={<span></span>} className={styles.tags}>
@@ -59,18 +76,40 @@ export default function createArticle() {
             发帖数
           </div>
 
+        {global.userData.islogin &&
+        (
           <div className={styles.indexContent}>
-            0
-          </div>
+          0
+        </div>
+        )
+        }
+                {!global.userData.islogin &&
+        (
+          <div className={styles.indexContent}>
+          ?
+        </div>
+        )
+        }
         </div>
         <Divider type='vertical'></Divider>
         <div className={styles.indexContainer}>
           <div className={styles.indexTitle}>
             点赞数
           </div>
+        {global.userData.islogin &&
+        (
           <div className={styles.indexContent}>
-            0
-          </div>
+          0
+        </div>
+        )
+        }
+                {!global.userData.islogin &&
+        (
+          <div className={styles.indexContent}>
+          ?
+        </div>
+        )
+        }
         </div>
       </div>
       <Divider/>
@@ -86,3 +125,9 @@ export default function createArticle() {
     </div>
   )
 }
+export default connect(
+  ({ global,loading }: { global: GlobalStateType; loading: Loading }) => ({
+    global,
+    loading: loading.models.global,
+  }),
+)(CreateArticle);

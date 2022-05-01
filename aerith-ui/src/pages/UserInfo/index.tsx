@@ -103,7 +103,8 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
             </Header>
 
           <Layout className={styles.inLayout}>
-            <Sider className={styles.sider} width={300}>
+
+            <Sider width={300}  className={styles.sider}>
               <div className={styles.siderMenu}>
                 <div className={styles.infoMenuTitle}>
                   个人中心
@@ -142,6 +143,7 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
              
             </div>
           </Sider>
+                        
             <Content className={styles.content}>
               <div > 
                {children}

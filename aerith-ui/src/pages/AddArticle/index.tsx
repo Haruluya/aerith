@@ -1,11 +1,14 @@
 
 import React from 'react'
-import { Form, Select,Input,Tag, InputNumber, Button, Divider } from 'antd';
+import { Form, Select,Input,Tag, InputNumber, Button, Divider, message } from 'antd';
 import ReactDom from 'react-dom'
 import styles from './index.less'
 import Content from './Content';
 import { ProFormUploadDragger } from '@ant-design/pro-form';
 import {FormOutlined} from '@ant-design/icons'
+import { Modal, Space } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { history } from 'umi';
 const AddAritcle = (props) => {
     // 表单配置。
     const layout = {
@@ -53,8 +56,23 @@ const AddAritcle = (props) => {
         console.log(`selected ${value}`);
       }
       
-      function onSearch(val) {
+      function onSearch(val) {  
         console.log('search:', val);
+      }
+
+    // 提交确认。
+    function confirmSubmit() {
+        Modal.confirm({
+          title: '发布',
+          icon: <ExclamationCircleOutlined />,
+          content: '你确认发布吗？',
+          okText: '确认',
+          cancelText: '取消',
+          onOk:()=>{
+              message.success("发布成功");
+              history.push('/home');
+          }
+        });
       }
     return(
         <div className={styles.mainContainer}>
@@ -68,10 +86,10 @@ const AddAritcle = (props) => {
                     <Input prefix={<FormOutlined />} style={{width:'50%'}}/>
                 </Form.Item>
 
-                <Form.Item name={['article', 'describe']} label="描述" rules={[{ type: 'number', min: 0, max: 99 }]}>
+                <Form.Item name={['article', 'describe']} label="描述" rules={[]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['article', 'content']} label="内容" rules={[{ type: 'number', min: 0, max: 99 }]}>
+                <Form.Item name={['article', 'content']} label="内容" rules={[]}>
                     <Content></Content>
                 </Form.Item>
                 <Form.Item name={['article', 'template']} label="板块">
@@ -87,9 +105,9 @@ const AddAritcle = (props) => {
                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
+                        <Option value="jack">闲聊</Option>
+                        <Option value="lucy">攻略</Option>
+                        <Option value="tom">求助</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item name={['article', 'tags']} label="标签">
@@ -98,7 +116,7 @@ const AddAritcle = (props) => {
                         showArrow
                         allowClear
                         tagRender={tagRender}
-                        defaultValue={['gold', 'cyan']}
+                        defaultValue={['杂谈']}
                         style={{ width: '60%' }}
                         options={options}
                     />
@@ -107,7 +125,8 @@ const AddAritcle = (props) => {
                     <ProFormUploadDragger max={4} name="dragger" />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                    <Button type="primary" htmlType="submit" shape='round' size='large'>
+                    <Button type="primary" htmlType="submit" shape='round' size='large'
+                        onClick={confirmSubmit} >
                         发布
                     </Button>
                 </Form.Item>

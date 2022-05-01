@@ -18,7 +18,7 @@ export default function RecTopic() {
           <Button type='text' >
             <Image src={userImg} width={48}>
             </Image>
-            Haruluya
+            Aerith
           </Button>
         </div>
         <div className={styles.topicItemContainer}>
@@ -32,7 +32,7 @@ export default function RecTopic() {
           <Button type='text' >
             <Image src={userImg} width={48}>
             </Image>
-            Haruluya
+            Aerith
           </Button>
         </div>
         <div className={styles.topicItemContainer}>

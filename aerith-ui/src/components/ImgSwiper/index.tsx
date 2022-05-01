@@ -8,12 +8,8 @@ export default function ImgSwiper() {
     SwiperCore.use([Autoplay]);
 
     const partnerLogo: Array<string> = [
-        require('../../assets/images/swipertest.jpeg'),
-        require('../../assets/images/swipertest.jpeg'),
-        require('../../assets/images/swipertest.jpeg'),
-        require('../../assets/images/swipertest.jpeg'),
-        require('../../assets/images/swipertest.jpeg'),
-        require('../../assets/images/swipertest.jpeg'),
+       'https://upload-bbs.mihoyo.com/pc_ad/pc_ad.png',
+        'https://upload-bbs.mihoyo.com/upload/2021/11/04/fabce5abf837e6d769cf73ebe7e1e60b_4481362569382882994.jpg', 
         ];
 
     return (

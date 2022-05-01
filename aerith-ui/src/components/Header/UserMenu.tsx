@@ -42,6 +42,10 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
       },
     });
   }
+  // 修改昵称和个性签名。
+  const updateSignatureAndNickName = ()=>{
+    
+  }
   // 显示抽屉。
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
@@ -145,7 +149,15 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
               },2000);
             }}>
               <span className={styles.avatarContainer} onClick={showDrawer} >
-                <Avatar src={avatar} className={styles.avatar} size={50} />
+                {global.userData.islogin &&
+                (
+                  <Avatar src={avatar} className={styles.avatar} size={50} />
+                )
+                }
+                {
+                  !global.userData.islogin &&
+                  <Avatar icon={<UserOutlined/>} className={styles.avatar} size={50} />
+                }
               </span>
               
               {showPop && name != '未登录' &&
@@ -162,7 +174,7 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
                       },100);
                     }}>
                     <div className={styles.userInfo}>
-                        <Avatar size={60} src={avatar}>
+                        <Avatar size={64} src={avatar==''? <UserOutlined /> : avatar}>
                         </Avatar>
                         <div className={styles.userName}>
                           {name}
@@ -208,7 +220,7 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
 
               <div className={styles.signature}>
                 <span>{signature}</span>
-                <Button>修改</Button>
+                <Button onClick={updateSignatureAndNickName}>修改</Button>
               </div>
               <Divider/>
               <div className={styles.tags}>

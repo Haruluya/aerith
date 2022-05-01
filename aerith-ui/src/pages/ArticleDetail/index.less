@@ -1,16 +1,142 @@
 .mainContainer{
     .layout{
+        position: relative;
         width: 1200px;
-        height: 800px;
+
         margin: 0 auto;
         .content{
-            background-color: white;
             margin-right: 30px;
         }
         .sider{
-            background-color: white;
-            width: 300px;
+
         }
     }
 }
 
+.content{
+    .artIndex{
+        position: absolute;
+        top: 0;
+        left: -110px;
+        padding: 30px 30px 0 30px;
+        background-color: white;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow:rgba(18, 18, 18, 0.1) 0px 1px 3px 0px;
+
+        .count{
+            text-align: center;
+            margin-top: 5px;
+            font-size: 16px;
+            color: #b3b3b3;
+        }
+    }
+    .article{
+        border-radius: 20px;
+        background-color: white;
+        padding: 40px;
+        .title{
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .description{
+            span{
+                font-size: large;
+            }
+            font-size: 16px;
+            color: #b3b3b3;
+        }
+        .template{
+            background-color: #f7f8fc;
+            padding: 10px;
+            color: #999999;
+        }
+        .tags{
+            margin-top: 10px;
+        }
+        .time{
+            text-align: center;
+            margin-top: 10px;
+            color: #ccccd6;
+        }
+
+        .cover{
+            text-align: center;
+            margin-top: 25px;
+            img{
+                width: 80%;
+            }
+        }
+        .artContent{
+            margin-top: 40px;
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+    }
+    .postComment{
+        margin-top: 30px;
+        padding: 40px 60px;
+        width: 100%;
+        height: 300px;
+        background-color: white;
+        border-radius: 20px;
+        .title{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            color: #00c3ff;
+        }
+        .textArea{
+            margin-top: 20px;
+        }
+        .oprations{
+            display: flex;
+            margin-top: 30px;
+
+            align-items: center;
+            .commit{
+                transform: translateX(610px);
+            }
+        }
+    }
+    .comments{
+        width: 100%;
+        margin-top: 30px;
+        border-radius: 20px;
+        padding: 20px 30px;
+        background-color: white;
+
+    }
+}
+
+.sider{
+
+    .userInfo{
+        width: 100%;
+        height: 200px;
+        background-color: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow:rgba(18, 18, 18, 0.1) 0px 1px 3px 0px;
+        
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        .info{
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            margin-left: 10px;
+            .username{
+                font-size: 20px;
+                color: #666883;
+            }
+            .signature{
+                font-size: 14px;
+                color: #999999;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

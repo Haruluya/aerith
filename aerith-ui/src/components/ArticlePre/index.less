@@ -17,8 +17,16 @@
             *{
                 margin: 3px;
             }
+            .username{
+                font-size: 14px;
+                color: #999999;
+
+            }
+            .time{
+                color: #cccccc;
+            }
             .focusButton{
-                margin: 0 0 0 530px;
+                margin: 0 0 0 560px;
                 *{
                     margin: 0;
                 } 
@@ -27,11 +35,18 @@
         // 标题行。
         .titleContainer{
             margin-top: 5px;
+            font-size: large;
+            font-weight: bold;
             transform: translateX(3px);
+            cursor: pointer;
+            &:hover{
+                color: #42c6ff;
+            }
         }
         // 内容行。
         .contentContainer{
             margin-top: 5px;
+            color: #999999;
             transform: translateX(12px);
         }
         // 图片行。
@@ -44,12 +59,18 @@
         }
         // 标签行。
         .tagContainer{
+            display: flex;
             margin-top: 15px;
             .classTags, .viewTags{
                 display: inline-block;
             }
             .viewTags{
-                transform: translateX(530px);
+                display: flex;
+                transform: translateX(580px);
+                .tag{
+                    cursor: pointer;
+                    margin-left: 30px;
+                }
             }
         }
     }

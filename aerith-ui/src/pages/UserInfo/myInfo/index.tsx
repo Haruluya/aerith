@@ -36,7 +36,7 @@ const MyInfo= ()=>{
         </div>
         <Divider/>
         <div className={styles.avatar}>
-            <Avatar size={120}>
+            <Avatar size={120} src='https://avatars.githubusercontent.com/u/91101915?s=400&u=5e99ab150ba4a8d28e761e5c36a1800a8806221a&v=4'>
             </Avatar>
             <div className={styles.modifyButton}>
                 <Button type='primary' shape='round'>
