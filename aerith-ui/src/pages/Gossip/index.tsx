@@ -1,10 +1,9 @@
 
 import { Button, Divider, Layout,Tag} from 'antd'
 const { Header, Footer, Sider, Content } = Layout;
-import React from 'react'
+import React,{ useState } from 'react'
 import TopicHeader from '@/components/TopicHeader';
 import styles from './index.less'
-
 
 import AritclPre from '@/components/ArticlePre';
 import OfficialInfo from '@/components/OfficialInfo';
@@ -12,7 +11,11 @@ import RecTopic from '@/components/RecTopic';
 import TopMessage from '@/components/TopMessage';
 
 
+
+
 export default function Gossip() {
+
+
   return (
     <div className={styles.gossipPart}>
       <Layout>

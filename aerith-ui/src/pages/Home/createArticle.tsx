@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './index.less'
 import { SnippetsTwoTone ,EditTwoTone,RightOutlined,CameraTwoTone,ContactsTwoTone,ContainerTwoTone} from '@ant-design/icons'
 import { Button, Space ,Divider} from 'antd'
-
+import { history } from 'umi'
 export default function createArticle() {
   return (
     <div className={styles.createArticlePart}>
@@ -75,7 +75,13 @@ export default function createArticle() {
       </div>
       <Divider/>
       <div className={styles.write}>
-        <Button type="primary" ghost block>发布帖子<RightOutlined /></Button>
+        <Button type="primary" ghost block
+          onClick={()=>{
+            history.push('/addarticle')
+          }}>
+          发布帖子
+          <RightOutlined />
+        </Button>
       </div>
     </div>
   )

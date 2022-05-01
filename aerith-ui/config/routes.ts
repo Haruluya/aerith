@@ -41,6 +41,13 @@ const routes:Array<object> =
                     component: 'Strategy' 
                 },
                 { 
+                    path: '/addarticle', 
+                    component: 'AddArticle' ,
+                    wrappers: [
+                        '@/wrappers/loginAuth',
+                    ],
+                },
+                { 
                     path: '/userinfo',
                     wrappers: [
                         '@/wrappers/loginAuth',

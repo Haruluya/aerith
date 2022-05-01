@@ -5,7 +5,7 @@ import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons';
 
 
 export default function IndexPage(props:any) {
-  setTwoToneColor('#eb2f96');
+  setTwoToneColor('#42c6ff');
   getTwoToneColor();
 
 

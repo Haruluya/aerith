@@ -38,15 +38,15 @@ export default function CenterMenu() {
             </Menu.Item>
             <Menu.SubMenu key="MoreSubMenu" title="更多" icon={<SettingOutlined />}>
                 <Menu.ItemGroup title="Item 1">
-                        <Menu.Item key="Home1" icon={<AppstoreOutlined />}>
-                        Home
-                        </Menu.Item>
-                        <Menu.Item key="Header1" icon={<AppstoreOutlined />}>
-                        Header
-                        </Menu.Item>
-                        <Menu.Item key="Footer1" disabled>
-                        Footer
-                        </Menu.Item>
+                    <Menu.Item key="Home1" icon={<AppstoreOutlined />}>
+                    Home
+                    </Menu.Item>
+                    <Menu.Item key="Header1" icon={<AppstoreOutlined />}>
+                    Header
+                    </Menu.Item>
+                    <Menu.Item key="Footer1" disabled>
+                    Footer
+                    </Menu.Item>
                 </Menu.ItemGroup>
             </Menu.SubMenu>
         </Menu>
