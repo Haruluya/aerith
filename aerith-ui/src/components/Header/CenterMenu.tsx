@@ -1,12 +1,12 @@
 import React from 'react'
-import './index.less'
+import styles from './index.less'
 import { Col, Menu,Row } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import {Link} from 'umi'
 // 中心菜单。
 export default function CenterMenu() {
   return (
-        <div>
+        <div className={styles.menu}>
         <Menu mode="horizontal" defaultSelectedKeys={['mail']} style={{ height: '100%', border: 0 }}>
             {/* <Menu.SubMenu key="ComponentSubMenu" title="Components" icon={<SettingOutlined />}>
                 <Menu.ItemGroup title="Item 1">
@@ -33,13 +33,13 @@ export default function CenterMenu() {
             <Menu.Item key="official" icon={<MailOutlined />}>
                 <Link to="/official">官方</Link>
             </Menu.Item>
-            <Menu.Item key="activity" icon={<MailOutlined />}>
-                <Link to="/activity">活动</Link>
+            <Menu.Item key="feedback" icon={<MailOutlined />}>
+                <Link to="/feedback">反馈</Link>
             </Menu.Item>
-            <Menu.SubMenu key="MoreSubMenu" title="更多" icon={<SettingOutlined />}>
+            <Menu.SubMenu key="ActivitySubMenu" title="活动" icon={<SettingOutlined />}>
                 <Menu.ItemGroup title="Item 1">
                     <Menu.Item key="Home1" icon={<AppstoreOutlined />}>
-                    Home
+                        <Link to="/feedback">反馈</Link>
                     </Menu.Item>
                     <Menu.Item key="Header1" icon={<AppstoreOutlined />}>
                     Header

@@ -9,10 +9,10 @@ import OfficialInfo from '@/components/OfficialInfo';
 import RecTopic from '@/components/RecTopic';
 import TopMessage from '@/components/TopMessage';
 import {history} from 'umi'
-import OfficialCard from './OfficialCard';
+import FeedBackCard from './FeedBackCard';
 
 
-export default function Official() {
+export default function FeedBack() {
   // 菜单切换回调。
   const [menuKey,setMenuKey] = useState("hot");
 
@@ -22,32 +22,15 @@ export default function Official() {
 
   return (
     <>
-    <div className={styles.officialHeader}>
-      <div className={styles.officialHeaderPart}>
-          <div className={styles.menu}>
-              <Menu mode="horizontal" defaultSelectedKeys={['hot']} onClick={changeTap}>
-                  <Menu.Item key="activity" >
-                      活动
-                  </Menu.Item>
-                  <Menu.Item key="notice" >
-                      公告
-                  </Menu.Item>
-                  <Menu.Item key="solicitation"  >
-                      征集
-                  </Menu.Item>
-              </Menu>
-          </div>
-      </div>
-    </div>
-    <div className={styles.officialPart}>
+    <div className={styles.feedbackPart}>
       <Layout>
-      <div className={styles.officialContent}>
+      <div className={styles.feedbackContent}>
         <Content>
         <div className={styles.articles}>
           {Array.from([1,2,3,4,5]).map((value,index)=>{
               return(
                 <div className={styles.card}>
-                  <OfficialCard/>
+                    <FeedBackCard/>
                 </div>
               )
           })

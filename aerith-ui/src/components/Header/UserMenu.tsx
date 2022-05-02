@@ -192,7 +192,7 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
           </div>
         </Col> 
         <Col span={14}>
-          <div className={styles.userName}><Button type='link' href="/login">{name}</Button></div>
+          <div className={styles.userName}><Link to="/login">{name}</Link></div>
         </Col>
       </Row>
 

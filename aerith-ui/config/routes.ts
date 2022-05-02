@@ -25,8 +25,8 @@ const routes:Array<object> =
                     component: 'AboutPoj' 
                 },
                 { 
-                    path: '/activity', 
-                    component: 'Activity' 
+                    path: '/feedback', 
+                    component: 'FeedBack' 
                 },
                 { 
                     path: '/articleDetail', 
@@ -43,6 +43,13 @@ const routes:Array<object> =
                 { 
                     path: '/addarticle', 
                     component: 'AddArticle' ,
+                    wrappers: [
+                        '@/wrappers/loginAuth',
+                    ],
+                },
+                { 
+                    path: '/gossip', 
+                    component: 'Gossip' ,
                     wrappers: [
                         '@/wrappers/loginAuth',
                     ],
