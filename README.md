@@ -22,15 +22,122 @@
 
 | <img width=50/>Modules <img width=50/> | <img width=50/>Version  <img width=50/> | <img width=50/>Directory<img width=50/> |
 | -------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ✅React                                 |                                         |                                         |
-| ✅MongoDB                               | 2.0.0                                   |                                         |
-| ✅kafka                                 | 0.10                                    |                                         |
-| ✅scala                                 | 2.11.8                                  |                                         |
-| ✅spark-mllib                           | 2.11                                    |                                         |
+| ✅React                                 | 17.x                                    |                                         |
+| ✅Mysql                                 |                                         |                                         |
+| ✅Javascript                            | ES2015                                  |                                         |
+| ✅Typescript                            |                                         |                                         |
+| ✅Umijs                                 | 3.5.23                                  |                                         |
+| ✅Nestjs                                | 8.0.0                                   |                                         |
+| ✅Less                                  | 4.1.0                                   |                                         |
+| ✅Antd                                  |                                         |                                         |
 
 ### Function Introduction
 
 ### Presentation
+
+#### **beta1---2022/4/30**
+
+★**以下画面不代表最终项目画面**
+
+#### **Show by pages:**
+
+```tex
+Pages:
+	AboutPoj,
+	AddArticle,
+		Content,
+	Archives,
+	ArticleDetail,
+		ArticleComment,
+	FeedBack,
+		FeedBackCard,
+	Gossip,
+	Home,
+	Login,
+	Official,
+		OfficialCard,
+	Search,
+	Strategy,
+		ModelCard,
+	UserInfo,
+		AboutAerith,
+		AboutHaruluya,
+		MyComment,
+		MyFans,
+		MyFocus,
+		MyInfo,
+		MyLevel,
+		MyPost,
+```
+
+**①Home：**
+
+![image-20220502210234573](./static/document/image-20220502210234573.png)
+
+**②Login**
+
+![image-20220502210701216](./static/document/image-20220502210701216.png)
+
+**③Gossip**
+
+![image-20220502210802129](./static/document/image-20220502210802129.png)
+
+**④Strategy**
+
+![image-20220502210848826](./static/document/image-20220502210848826.png)
+
+![image-20220502210937356](./static/document/image-20220502210937356.png)
+
+**⑤Official**
+
+![image-20220502211017028](./static/document/image-20220502211017028.png)
+
+**⑥FeedBack**
+
+![image-20220502211044914](./static/document/image-20220502211044914.png)
+
+**⑦UserInfo**
+
+![image-20220502211148498](./static/document/image-20220502211148498.png)
+
+**部分子路由组件：**
+
+![image-20220502212438361](./static/document/image-20220502212438361.png)
+
+![image-20220502212450419](./static/document/image-20220502212450419.png)
+
+![image-20220502212459295](./static/document/image-20220502212459295.png)
+
+![image-20220502212525063](./static/document/image-20220502212525063.png)
+
+**⑧ArticleDetail**
+
+![image-20220502211357257](./static/document/image-20220502211357257.png)
+
+![image-20220502212210281](./static/document/image-20220502212210281.png)
+
+#### **Show by components:**
+
+```tex
+components:
+	ArticleCard,
+	ArticleCreate,
+	ArticlePre,
+	Comments,
+	DIYmodal,
+	Footer,
+	Header,
+	ImgSwiper,
+	NavCard,
+	NavTag,
+	OfficialInfo,
+	RecTopic,
+	RecUser,
+	Register,
+	TopMessage,
+	UserComment,
+	VideoCard
+```
 
 ### About author
 

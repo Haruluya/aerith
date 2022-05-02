@@ -18,6 +18,7 @@ import styles from './index.less'
 import { urlencoded } from '@umijs/deps/compiled/express';
 type LoginType = 'phone' | 'account';
 
+const logo = require('@/assets/images/logo.png')
 const iconStyles: CSSProperties = {
   color: 'rgba(0, 0, 0, 0.2)',
   fontSize: '18px',
@@ -50,7 +51,7 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
             }
         }}
         backgroundImageUrl="https://w.wallhaven.cc/full/k7/wallhaven-k7gd8q.png"
-        logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        logo={logo}
         title="Aerith"
         subTitle="Aerith's game forum."
         activityConfig={{
