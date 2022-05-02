@@ -20,6 +20,14 @@
 
 ### Technology selection
 
+| <img width=50/>Modules <img width=50/> | <img width=50/>Version  <img width=50/> | <img width=50/>Directory<img width=50/> |
+| -------------------------------------- | --------------------------------------- | --------------------------------------- |
+| ✅React                                 |                                         |                                         |
+| ✅MongoDB                               | 2.0.0                                   |                                         |
+| ✅kafka                                 | 0.10                                    |                                         |
+| ✅scala                                 | 2.11.8                                  |                                         |
+| ✅spark-mllib                           | 2.11                                    |                                         |
+
 ### Function Introduction
 
 ### Presentation

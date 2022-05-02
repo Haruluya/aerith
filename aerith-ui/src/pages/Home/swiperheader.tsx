@@ -17,10 +17,10 @@ SwiperCore.use([Autoplay, Navigation, Scrollbar]);
 const SwiperHeader = () => {
 
     const partnerLogo: Array<string> = [
-        'https://upload-bbs.mihoyo.com/upload/2022/05/01/133056c0a126f23979fe25ba60237f59.png',
-        'https://upload-bbs.mihoyo.com/upload/2022/04/29/e213c6506291977fabef7f83935b3772.png',
-        'https://upload-bbs.mihoyo.com/upload/2021/10/31/c68c5dcb9286cf2c4af6f37f844b86fc.jpeg',
-        'https://upload-bbs.mihoyo.com/upload/2022/05/01/871518859281941a837b1976a513126c.jpeg',
+        require('@/assets/homeSwiper/pic01.webp'),
+        require('@/assets/homeSwiper/pic02.webp'),
+        require('@/assets/homeSwiper/pic03.webp'),
+        require('@/assets/homeSwiper/pic04.webp'),
       ];
 
     return (
@@ -37,6 +37,7 @@ const SwiperHeader = () => {
                             <SwiperSlide key={index}>
                                 <img className={styles.item} src={value} key={index} />
                             </SwiperSlide>
+                              
                         </div>
                     
                     );

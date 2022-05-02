@@ -2,7 +2,7 @@ import { Tag,Image,Button,Divider } from 'antd'
 import React from 'react'
 import styles from './index.less'
 export default function OfficialInfo() {
-    const titleImgSrc = "https://upload-bbs.mihoyo.com/upload/2022/05/01/80823548/bf2a4294f0a0a6b6fec10cf343bf54e6_4232577424402899849.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png"
+    const titleImgSrc = "https://img2.baidu.com/it/u=2895287139,3562509517&fm=253&fmt=auto&app=138&f=JPEG?w=843&h=500"
 
   return (
     <div className={styles.officialInfoPart}>

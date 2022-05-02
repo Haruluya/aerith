@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.less'
 import { Col, Menu,Row } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import {FullscreenExitOutlined, BankOutlined,GithubOutlined,CrownOutlined,ForkOutlined,AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import {Link} from 'umi'
 // 中心菜单。
 export default function CenterMenu() {
@@ -21,31 +21,25 @@ export default function CenterMenu() {
                     </Menu.Item>
                 </Menu.ItemGroup>
             </Menu.SubMenu> */}
-            <Menu.Item key="homepage" icon={<MailOutlined />}>
+            <Menu.Item key="homepage" icon={<FullscreenExitOutlined />}>
                 <Link to="/home">首页</Link>
             </Menu.Item>
-            <Menu.Item key="gossip" icon={<MailOutlined />}>
+            <Menu.Item key="gossip" icon={<BankOutlined />}>
                 <Link to="/gossip">闲聊</Link>
             </Menu.Item>
-            <Menu.Item key="strategy" icon={<MailOutlined />}>
+            <Menu.Item key="strategy" icon={<ForkOutlined />}>
                 <Link to="/strategy">攻略</Link>
             </Menu.Item>
-            <Menu.Item key="official" icon={<MailOutlined />}>
+            <Menu.Item key="official" icon={<CrownOutlined />}>
                 <Link to="/official">官方</Link>
             </Menu.Item>
-            <Menu.Item key="feedback" icon={<MailOutlined />}>
+            <Menu.Item key="feedback" icon={<GithubOutlined />}>
                 <Link to="/feedback">反馈</Link>
             </Menu.Item>
             <Menu.SubMenu key="ActivitySubMenu" title="活动" icon={<SettingOutlined />}>
-                <Menu.ItemGroup title="Item 1">
-                    <Menu.Item key="Home1" icon={<AppstoreOutlined />}>
-                        <Link to="/feedback">反馈</Link>
-                    </Menu.Item>
-                    <Menu.Item key="Header1" icon={<AppstoreOutlined />}>
-                    Header
-                    </Menu.Item>
-                    <Menu.Item key="Footer1" disabled>
-                    Footer
+                <Menu.ItemGroup title="Aerith">
+                    <Menu.Item key="archives" icon={<AppstoreOutlined />}>
+                        <Link to="/archives">档案馆</Link>
                     </Menu.Item>
                 </Menu.ItemGroup>
             </Menu.SubMenu>

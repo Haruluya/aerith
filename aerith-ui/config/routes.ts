@@ -55,6 +55,13 @@ const routes:Array<object> =
                     ],
                 },
                 { 
+                    path: '/archives', 
+                    component: 'Archives' ,
+                    wrappers: [
+                        '@/wrappers/loginAuth',
+                    ],
+                },
+                { 
                     path: '/userinfo',
                     wrappers: [
                         '@/wrappers/loginAuth',

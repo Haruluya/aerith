@@ -8,8 +8,7 @@ export default function ImgSwiper() {
     SwiperCore.use([Autoplay]);
 
     const partnerLogo: Array<string> = [
-       'https://upload-bbs.mihoyo.com/pc_ad/pc_ad.png',
-        'https://upload-bbs.mihoyo.com/upload/2021/11/04/fabce5abf837e6d769cf73ebe7e1e60b_4481362569382882994.jpg', 
+        'https://img2.baidu.com/it/u=3406364017,3476071676&fm=253&fmt=auto&app=138&f=JPEG?w=830&h=500', 
         ];
 
     return (
