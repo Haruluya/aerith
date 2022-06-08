@@ -8,6 +8,9 @@ import { ConnectProps, Loading, connect } from 'umi';
 // 全局State接口。
 export interface GlobalStateType{
     userData:UserData,
+    homeArtData:any,
+    artDataDetail:any,
+    grossiData:any
 }
 
 // 全局Dva模块接口。
@@ -15,7 +18,12 @@ export interface GlobalDvaType{
     namespace: string;
     state: GlobalStateType;
     effects: {
-        getUserData:Effect
+        getUserData:Effect;
+        updateInfo:Effect;
+        addArticle:Effect;
+        getHomeData:Effect;
+        getArticleDataById:Effect;
+        getGrossiData:Effect
     };
     reducers: {
         setUserData: Reducer<GlobalStateType>;

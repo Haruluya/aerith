@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards,Req } from '@nestjs/common';
 import {ApiTags, ApiOperation} from '@nestjs/swagger'
 import {LoginData,TokenData,RegisterData} from './interfaces/user.interface'
+import {LoginMobileData,FoundData} from './dto/create-user.dto'
 import { JSONRes } from 'src/utils/jsonResInterface';
 import { UserService } from './user.service';
 import { Request } from 'express'
@@ -14,6 +15,8 @@ import User from './user.entity';
 
 const jsonRes = new JSONRes()
 
+
+
 @ApiTags('User')
 @Controller('aerithi/user')
 export class UserController {
@@ -23,11 +26,14 @@ export class UserController {
     ){}
 
 
+    
+
+
     @UseGuards(JwtAuthGuard) // 使用 'JWT' 进行验证
     @ApiOperation({ summary: 'Hello' })
     @Post('hello')
     getHello(){
-        return
+        return 'hello';
     }
 
     @ApiOperation({ summary: '用户登录' })
@@ -40,19 +46,60 @@ export class UserController {
         if (data.username){
             user = (await this.userService.findUserByName(data.username))[0];
         }
-        // 手机号登录。
-        else if (data.mobile){
-            user = (await this.userService.findUserByMobile(data.mobile))[0];
-        }
         if(!user){
             return jsonRes._error(400,'用户不存在！');
         }
         // 加密验证密码。
         const salt = user.salt; 
         const hashPwd = encryptPassword(data.password, salt);  
-        console.log(hashPwd)
         if(hashPwd != user.password){
             return jsonRes._error(400,'密码错误！');
+        }
+        // 登录成功返回token。
+        const token = await this.authService.getToken({
+            id : user.id,
+            username:user.username,
+            mobile:user.mobile,
+            password:user.password,
+            salt:user.salt
+        });
+        return jsonRes._success({
+            token
+        })
+    }
+
+
+    @ApiOperation({ summary: '用户找回登录' })
+    @Post('foundpassword')
+    async foundPassword(@Body() data:FoundData){
+        let user:User = null;
+        // 手机号登录。
+        if (data.mobile){
+            user = (await this.userService.findUserByMobile(data.mobile))[0];
+        }
+
+        const salt = user.salt; 
+        const hashPwd = encryptPassword(data.newpassword, salt);  
+        user.password = hashPwd;
+        await this.userService.saveUser(user);
+        return jsonRes._success({
+        })
+    }
+
+
+    @ApiOperation({ summary: '用户手机登录' })
+    @Post('loginConfirmByMobile')
+    async loginConfirmByMobile(@Body() data:LoginMobileData){
+        console.log(data);
+        //用户是否存在。
+        // 账号密码登录。
+        let user:User = null;
+        // 手机号登录。
+        if (data.mobile){
+            user = (await this.userService.findUserByMobile(data.mobile))[0];
+        }
+        if(!user){
+            return jsonRes._error(400,'用户不存在！');
         }
         // 登录成功返回token。
         const token = await this.authService.getToken({
@@ -106,7 +153,7 @@ export class UserController {
     @Post('registerConfirm')
     async registerConfirm(@Body() data:RegisterData){
         // 验证是否存在。
-        const user = (await this.userService.findUserByName(data.username))[0];
+        const user = (await this.userService.findUserByMobile(data.mobile))[0];
         if (user){
             return jsonRes._error(400,`${data.mobile}用户已经存在！`)
         }

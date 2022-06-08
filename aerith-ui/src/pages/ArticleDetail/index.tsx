@@ -14,16 +14,19 @@ import gfm from 'remark-gfm'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {vs} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Layout } from 'antd';
-
+import {useEffect,useState} from 'react';
 // 组件导入。
 import ImgSwiper from '@/components/ImgSwiper';
 import OfficialInfo from '@/components/OfficialInfo';
 import RecTopic from '@/components/RecTopic';
 import ArticleComment from './ArticleComment';
-
+import {connect,Loading} from 'umi';
+import { LoginProps } from '@/interfaces/login';
 const { Sider, Content } = Layout;
+import { GlobalStateType } from '@/interfaces/global';
+import type { CSSProperties,FC } from 'react';
 
-const ArticleDetaile= ()=>{
+const ArticleDetaile:FC<LoginProps>= ({location,global,dispatch})=>{
 
   const artContent = `
   # react-markdown 支持markdown格式
@@ -70,130 +73,165 @@ aerith.heart = null;
 **看透一切而又能超越一切，只有Aerith。**
 
 `
+let template = ["官方","闲聊","攻略","反馈"]
+const [article, setArticle] = useState(null)
 
+useEffect(() => {
+
+  async function effectFun() {
+      if (dispatch){
+        await dispatch({
+            type: 'global/getArticleDataById',
+            payload:{
+              id:location.query.aid,
+            } 
+        })
+
+        setArticle(global.artDataDetail)
+    }
+
+  }
+  effectFun().then(()=>{
+    setArticle(global.artDataDetail)
+  })
+},[])
+
+console.log(article);
 
 return (
-  <div className={styles.mainContainer}>
-      <Layout className={styles.layout}>
-        <Content className={styles.content}>
-          <div className={styles.artIndex}>
-            <div>
-             <MessageTwoTone style={{fontSize:'40px'}}/>
-              <div className={styles.count}>666</div>
+    <>
+     {article &&(
+        <div className={styles.mainContainer}>
+        <Layout className={styles.layout}>
+          <Content className={styles.content}>
+            <div className={styles.artIndex}>
+              <div>
+               <MessageTwoTone style={{fontSize:'40px'}}/>
+                <div className={styles.count}>666</div>
+              </div>
+              <Divider/>
+              <div className={styles.artIndexItem}>
+              <StarTwoTone style={{fontSize:'40px'}}/>
+                <div className={styles.count}>666</div>
+              </div>
+              <Divider/>
+              <div>
+                <LikeTwoTone style={{fontSize:'40px'}}/>
+                <div  className={styles.count}>666</div>
+              </div>
+              <Divider/>
             </div>
-            <Divider/>
-            <div className={styles.artIndexItem}>
-            <StarTwoTone style={{fontSize:'40px'}}/>
-              <div className={styles.count}>666</div>
-            </div>
-            <Divider/>
-            <div>
-              <LikeTwoTone style={{fontSize:'40px'}}/>
-              <div  className={styles.count}>666</div>
-            </div>
-            <Divider/>
-          </div>
+  
+            <div className={styles.article}>
+              <div className={styles.title}>
+              {global.artDataDetail.article[0].title}
+              </div>
+              <Divider/>
+              <div className={styles.description}>
+                <span>帖子描述：</span><br/>
+                <p> {global.artDataDetail.article[0].description}</p>
+              </div>
+              <div className={styles.template}>
+                隶属板块：{template[global.artDataDetail.article[0].tid]}
+              </div>
+              <div className={styles.tags}>
+              {global.artDataDetail.article[0].title}
+              </div>
+              <div className={styles.cover}>
+                <img src={global.artDataDetail.article[0].cover}></img>
+              </div>
+              <div className={styles.time}>
+                帖子发布时间：{global.artDataDetail.article[0].create_time} | 更新时间：{global.artDataDetail.article[0].update_time}
+              </div>
 
-          <div className={styles.article}>
-            <div className={styles.title}>
-            《最终幻想7：重制版》
+              <div className={styles.artContent}>
+                  <ReactMarkdown
+                    children={global.artDataDetail.article[0].content}
+                    remarkPlugins={[gfm]}
+                    components={{
+                    code({node, inline, className, children, ...props}) {
+                        const match = /language-(\w+)/.exec(className || '')
+                        return !inline && match ? (
+                        <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, '')}
+                            style={vs}
+                            language={match[1]}
+                            PreTag="div"
+                            showLineNumbers={true}
+                            wrapLines={true}
+                            {...props}
+                        />
+                        ) : (
+                        <code className={className} {...props}>
+                            {children}
+                        </code>
+                        )
+                    }
+                    }}
+                />,
+              </div>
+              <Divider/>
             </div>
-            <Divider/>
-            <div className={styles.description}>
-              <span>帖子描述：</span><br/>
-              <p>  艾瑞丝是《最终幻想Ⅶ》正传及外传《核心危机》中官方设定的女主角，在《圣子降临》等其他作品中出场。作为唯一仅存的古代种（赛特拉，Cetra）、白魔石的持有者，身负沉重的宿命。</p>
+            <div className={styles.postComment}>
+              <div className={styles.title}>
+                评论发言：
+              </div>
+              <div className={styles.textArea}>
+                <TextArea rows={5} placeholder="inpute comment:" maxLength={400} showCount />
+              </div>
+              <div className={styles.oprations}>
+                  <div className={styles.smile}>
+                    <SmileTwoTone style={{fontSize:'24px'}}/>
+                  </div>
+                  <div className={styles.commit}>
+                    <Button type='primary' shape='round' size='large'>评论</Button>
+                  </div>
+              </div>
             </div>
-            <div className={styles.template}>
-              隶属板块：官方
+            <div className={styles.comments}>
+            <Tabs defaultActiveKey="1" onChange={(key)=>{}} size="large">
+              <TabPane tab="全部评论" key="1">
+                <ArticleComment></ArticleComment>
+              </TabPane>
+              <TabPane tab="只看贴主" key="2">
+                
+              </TabPane>
+            </Tabs>
             </div>
-            <div className={styles.tags}>
+          </Content>
+          <Sider className={styles.sider} width={300}>
+            <div className={styles.userInfo}>
+              <div className={styles.avatar}>
+              <Avatar size={90} src={global.artDataDetail.user[0].avatar}>
+              </Avatar>
+              </div>
+              <div className={styles.info}>
+                <div className={styles.username}>{global.artDataDetail.user[0].username}</div>
+                <div><Tag color="green">LV{global.artDataDetail.user[0].level}</Tag></div>
+                <div className={styles.signature}>{global.artDataDetail.user[0].signature}</div>
+                <Button type='primary'>关注</Button>
+              </div>
+            </div>
+            <ImgSwiper></ImgSwiper>
+            <OfficialInfo></OfficialInfo>
+            <RecTopic></RecTopic>
+          </Sider>
+        </Layout>
+        
+    </div>
+     )
 
-            </div>
-            <div className={styles.time}>
-              帖子发布时间：04-28 | 更新时间：04-29
-            </div>
-            <div className={styles.cover}>
-              <img src='https://5b0988e595225.cdn.sohucs.com/images/20191222/c091a181332a42f3b83d8ffd383b8ead.jpeg'></img>
-            </div>
-            <div className={styles.artContent}>
-                <ReactMarkdown
-                  children={artContent}
-                  remarkPlugins={[gfm]}
-                  components={{
-                  code({node, inline, className, children, ...props}) {
-                      const match = /language-(\w+)/.exec(className || '')
-                      return !inline && match ? (
-                      <SyntaxHighlighter
-                          children={String(children).replace(/\n$/, '')}
-                          style={vs}
-                          language={match[1]}
-                          PreTag="div"
-                          showLineNumbers={true}
-                          wrapLines={true}
-                          {...props}
-                      />
-                      ) : (
-                      <code className={className} {...props}>
-                          {children}
-                      </code>
-                      )
-                  }
-                  }}
-              />,
-            </div>
-            <Divider/>
-          </div>
-          <div className={styles.postComment}>
-            <div className={styles.title}>
-              评论发言：
-            </div>
-            <div className={styles.textArea}>
-              <TextArea rows={5} placeholder="inpute comment:" maxLength={400} showCount />
-            </div>
-            <div className={styles.oprations}>
-                <div className={styles.smile}>
-                  <SmileTwoTone style={{fontSize:'24px'}}/>
-                </div>
-                <div className={styles.commit}>
-                  <Button type='primary' shape='round' size='large'>评论</Button>
-                </div>
-            </div>
-          </div>
-          <div className={styles.comments}>
-          <Tabs defaultActiveKey="1" onChange={(key)=>{}} size="large">
-            <TabPane tab="全部评论" key="1">
-              <ArticleComment></ArticleComment>
-            </TabPane>
-            <TabPane tab="只看贴主" key="2">
-              
-            </TabPane>
-          </Tabs>
-          </div>
-        </Content>
-        <Sider className={styles.sider} width={300}>
-          <div className={styles.userInfo}>
-            <div className={styles.avatar}>
-            <Avatar size={90} src='https://img-static.mihoyo.com/avatar/avatar14.png'>
-            </Avatar>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.username}>Haruluya</div>
-              <div><Tag color="green">LV0</Tag></div>
-              <div className={styles.signature}>开发者haruluya。</div>
-              <Button type='primary'>关注</Button>
-            </div>
-          </div>
-          <ImgSwiper></ImgSwiper>
-          <OfficialInfo></OfficialInfo>
-          <RecTopic></RecTopic>
-        </Sider>
-      </Layout>
-      
-  </div>
+     }
+    </>
 
   )
        
 }
 
 
-export default ArticleDetaile;
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(ArticleDetaile);

@@ -1,5 +1,5 @@
 
-import {loginConfirm, logout,registerConfirm } from '@/services/login';
+import {loginConfirm, logout,registerConfirm ,foundpassword,loginConfirmByMobile} from '@/services/login';
 import { message, notification } from 'antd';
 import {LoginStateType, LoginDvaType,} from '@/interfaces/login'
 
@@ -8,7 +8,7 @@ import {LoginStateType, LoginDvaType,} from '@/interfaces/login'
 const LoginDva: LoginDvaType = {
     namespace: 'login',
     state: {
-      token:''
+      token:'',
     },
     effects: {
 
@@ -30,7 +30,41 @@ const LoginDva: LoginDvaType = {
 
         });
       },
-  
+
+      *loginbymobile({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(loginConfirmByMobile, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('登录失败！');
+          return;
+        }
+        message.success('登录成功！');
+        yield put({
+          type: 'setToken',
+          payload: {
+            token : result.token
+          },
+
+        });
+      },
+      *foundpassword({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(foundpassword, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('找回密码失败！');
+          return;
+        }
+        message.success('找回密码成功！');
+        yield put({
+          type: 'setToken',
+          payload: {
+            token : result.token
+          },
+
+        });
+      },
       *logout(_, { call,put }) {
         const result = yield call(logout);
         if (!result) {
@@ -52,7 +86,11 @@ const LoginDva: LoginDvaType = {
           message.error('注册失败！');
           return;
         }
-        message.success('注册成功！');
+        notification['success']({
+          message: '注册成功',
+          description:
+            '新用户注册成功，请登录！',
+        });
       }
 
 

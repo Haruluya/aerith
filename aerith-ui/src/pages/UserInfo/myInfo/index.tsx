@@ -5,7 +5,7 @@ import { Avatar, Divider,Tabs, Button} from 'antd'
 import { Link } from 'umi'
 const { TabPane } = Tabs;
 import { Form, Input, InputNumber} from 'antd';
-
+import {connect,Loading} from 'umi';
 const MyInfo= ()=>{
 
     const layout = {
@@ -39,14 +39,17 @@ const MyInfo= ()=>{
             <Avatar size={120} src='https://avatars.githubusercontent.com/u/91101915?s=400&u=5e99ab150ba4a8d28e761e5c36a1800a8806221a&v=4'>
             </Avatar>
             <div className={styles.modifyButton}>
-                <Button type='primary' shape='round'>
+                {/* <Button type='primary' shape='round'>
                     修改头像
-                </Button>
+                </Button> */}
             </div>
         </div>
         <div className={styles.form}>
           <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-            <Form.Item name={['user', 'name']} label="昵称" rules={[{ required: true }]}>
+            <Form.Item name={['user', 'headurl']} label="昵称" rules={[{ required: true }]}>
+                <Input />
+            </Form.Item>
+            <Form.Item name={['user', 'name']} label="头像" rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
             <Form.Item name={['user', 'email']} label="邮箱" rules={[{ type: 'email' }]}>
@@ -59,7 +62,12 @@ const MyInfo= ()=>{
                 <Input.TextArea />
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit"
+                    onClick={()=>{
+
+                        }
+                    }
+                >
                 提交
                 </Button>
             </Form.Item>
@@ -70,4 +78,8 @@ const MyInfo= ()=>{
 }
 
 
-export default MyInfo;
+export default connect(
+  ({ loading }: { loading: Loading }) => ({
+    loading: loading.models.global,
+  }),
+)(MyInfo);

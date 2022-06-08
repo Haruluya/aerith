@@ -9,17 +9,33 @@ import OfficialInfo from '@/components/OfficialInfo';
 import RecTopic from '@/components/RecTopic';
 import TopMessage from '@/components/TopMessage';
 import {history} from 'umi'
+import {useEffect} from 'react';
+import { LoginProps } from '@/interfaces/login';
+import { GlobalStateType } from '@/interfaces/global';
+import {connect,Loading} from 'umi';
+import type { CSSProperties,FC } from 'react';
 
-
-
-export default function Gossip() {
+const Gossip:FC<LoginProps> =  ({global,dispatch}) => {
   // 菜单切换回调。
   const [menuKey,setMenuKey] = useState("hot");
 
   const changeTap = ({key})=>{
     setMenuKey(key);
   }
+  useEffect(() => {
+    async function effectFun() {
+        if (dispatch){
+          await dispatch({
+              type: 'global/getGrossiData',
+              payload:{
+                tid:1
+              } 
+          })
+      }
 
+    }
+    effectFun()
+  },[])
   return (
     <>
     <div className={styles.gossipHeader}>
@@ -56,11 +72,14 @@ export default function Gossip() {
             )
           }
         <div className={styles.articles}>
-          <AritclPre></AritclPre>
-          <AritclPre></AritclPre>
-          <AritclPre></AritclPre>
-          <AritclPre></AritclPre>
-          <AritclPre></AritclPre>
+        {Array.from(global.grossiData.articles).map((value:any,index)=>{
+              return(
+                <div className={styles.card}>
+                  <AritclPre {...{data:global.grossiData,index:index}}></AritclPre>
+                </div>
+              )
+          })
+          }
           </div>
         </Content>
       </div>
@@ -73,3 +92,9 @@ export default function Gossip() {
     </>
   )
 }
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(Gossip);

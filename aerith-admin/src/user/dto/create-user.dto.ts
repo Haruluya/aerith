@@ -6,3 +6,15 @@ export class CreateUserDto {
   @IsString()
   nickName: string;
 }
+
+// 获取用户信息请求体。
+export class LoginMobileData{
+
+  mobile:string
+}
+
+
+export class FoundData{
+  newpassword:string;
+  mobile:string;
+}

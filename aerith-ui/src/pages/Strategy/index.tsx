@@ -10,11 +10,34 @@ import RecTopic from '@/components/RecTopic';
 import TopMessage from '@/components/TopMessage';
 import {history} from 'umi'
 import ModelCard from './ModelCard';
+import {useEffect} from 'react';
+import { LoginProps } from '@/interfaces/login';
+import { GlobalStateType } from '@/interfaces/global';
+import {connect,Loading} from 'umi';
+import type { CSSProperties,FC } from 'react';
 
 
-export default function Strategy() {
+
+const Strategy:FC<LoginProps> = ({global,dispatch}) => {
   // 菜单切换回调。
   const [menuKey,setMenuKey] = useState("hot");
+
+
+  useEffect(() => {
+    async function effectFun() {
+        if (dispatch){
+          await dispatch({
+              type: 'global/getGrossiData',
+              payload:{
+                tid:2
+              } 
+          })
+      }
+  
+    }
+    effectFun()
+  },[])
+  
 
   const changeTap = ({key})=>{
     setMenuKey(key);
@@ -61,11 +84,14 @@ export default function Strategy() {
           {(menuKey!="class") &&
             (
                 <div className={styles.articles}>
-                <AritclPre></AritclPre>
-                <AritclPre></AritclPre>
-                <AritclPre></AritclPre>
-                <AritclPre></AritclPre>
-                <AritclPre></AritclPre>
+                {Array.from(global.grossiData.articles).map((value:any,index)=>{
+                      return(
+                        <div className={styles.card}>
+                          <AritclPre {...{data:global.grossiData,index:index}}></AritclPre>
+                        </div>
+                      )
+                  })
+                  }
                 </div>
             )
           }
@@ -102,3 +128,10 @@ export default function Strategy() {
     </>
   )
 }
+
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(Strategy);

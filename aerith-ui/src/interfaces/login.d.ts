@@ -19,6 +19,8 @@ export interface LoginDvaType {
       login: Effect;
       logout: Effect;
       register:Effect;
+      loginbymobile:Effect;
+      foundpassword:Effect
     };
     reducers: {
       setToken: Reducer<LoginStateType>;

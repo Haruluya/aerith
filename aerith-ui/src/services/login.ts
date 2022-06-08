@@ -1,4 +1,4 @@
-import {postLoginConfirm,postRegisterConfirm} from '@/utils/requests'
+import {postLoginConfirm,postRegisterConfirm,postfoundpassword,postloginConfirmByMobile} from '@/utils/requests'
 import { setToken,removeToken } from '@/utils/token';
 
 /**
@@ -28,6 +28,35 @@ export async function registerConfirm(params:any) {
         return null;
     }   
     if (response.success){
+        return response.data;
+    }
+    return null;
+}
+
+
+
+export async function loginConfirmByMobile(params:any) {
+    const response = await postloginConfirmByMobile(params);
+    //响应失败。
+    if (!response){
+        return null;
+    }   
+    if (response.success){
+        setToken(response.data.token);
+        return response.data;
+    }
+    return null;
+}
+
+
+export async function foundpassword(params:any) {
+    const response = await postfoundpassword(params);
+    //响应失败。
+    if (!response){
+        return null;
+    }   
+    if (response.success){
+        setToken(response.data.token);
         return response.data;
     }
     return null;

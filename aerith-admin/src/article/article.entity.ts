@@ -1,37 +1,41 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export default class Article {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id?: number;
-
+  @ApiProperty()
   @Column()
-  uid: Number;
-
+  uid: number;
+  @ApiProperty()
   @Column()
-  tid: Number;
-
+  tid: number;
+  @ApiProperty()
   @Column()
   title: string;
-
+  @ApiProperty()
   @Column()
   description: string;
-
+  @ApiProperty()
   @Column()
-  create_time: Number;
-
+  create_time: number;
+  @ApiProperty()
   @Column()
-  update_time?: Number;
-
+  update_time?: number;
+  @ApiProperty()
   @Column()
   content: string;
-
+  @ApiProperty()
   @Column()
-  view_count:Number;
-
+  view_count:number;
+  @ApiProperty()
   @Column()
-  like_count:Number;
-
+  like_count:number;
+  @ApiProperty()
   @Column()
-  status:Number;
+  status:number;
+  @ApiProperty()
+  @Column()
+  cover:String;
 }

@@ -1,29 +1,34 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export default class Comment {
   @PrimaryGeneratedColumn()
-  id?: Number;
+  @ApiProperty()
+  id?: number;
 
+  @ApiProperty()
   @Column()
-  uid: Number;
+  uid: number;
 
+  @ApiProperty()
   @Column()
-  aid: Number;
+  aid: number;
 
+
+  @ApiProperty()
   @Column()
-  description: String;
+  create_time: number;
 
-  @Column()
-  create_time: Number;
-
+  @ApiProperty()
   @Column()
   content: String;
 
+  @ApiProperty()
   @Column()
-  status:Number;
+  status:number;
 
+  @ApiProperty()
   @Column()
-  parent:Number;
+  parent:number;
 
 }

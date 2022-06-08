@@ -1,7 +1,7 @@
 
-import {userData} from '@/services/user';
+import {userData,updateInfo,addArticle,getHomeData,getGrossiData,getArticleDetail} from '@/services/user';
 import { message, notification } from 'antd';
-import { UserData,GlobalDvaType } from '@/interfaces/global';
+import { UserData,GlobalDvaType} from '@/interfaces/global';
 import { getToken } from '@/utils/token';
 //global的dva模块。 
 const GlobalDva: GlobalDvaType = {
@@ -19,10 +19,91 @@ const GlobalDva: GlobalDvaType = {
         signature:'',
         tags:[''],
         islogin:false,
+      },
+      homeArtData:{
+        articles:[],
+        users:[]
+      },
+      grossiData:{
+        articles:[],
+        users:[]
+      },
+      artDataDetail:{
       }
     },
     effects: {
+      *getHomeData({ payload }, { call, put }){
+        // 请求验证。
+        const result = yield call(getHomeData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'sethomeArtData',
+          payload: {
+            data : result.result
+          },
 
+        });
+      },
+      *addArticle({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(addArticle, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');;
+      },
+      *updateInfo({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(updateInfo, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+
+      },
+      *getGrossiData({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getGrossiData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setGrossiData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
+      *getArticleDataById({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getArticleDetail, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setArticleData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
         *getUserData({ payload }, { call, put }){
           
           let result = yield call(userData, payload);
@@ -61,6 +142,27 @@ const GlobalDva: GlobalDvaType = {
           userData:payload.userData
         };
       },
+      sethomeArtData(state,{payload}){
+
+        return {
+          ...state,
+          homeArtData:payload.data
+        };
+      },
+      setArticleData(state,{payload}){
+        console.log(payload)
+        return {
+          ...state,
+          artDataDetail:payload.data
+        };
+      },
+      setGrossiData(state,{payload}){
+        console.log(payload)
+        return {
+          ...state,
+          grossiData:payload.data
+        };
+      }
     },
   };
 

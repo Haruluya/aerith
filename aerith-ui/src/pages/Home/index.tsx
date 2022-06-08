@@ -1,20 +1,40 @@
 import Layout, { Content, Header } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
+import {useEffect} from 'react';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import styles from './index.less';
 
 import SwiperHeader from './swiperheader';
-
+import {connect,Loading} from 'umi';
 import AritclPre from '@/components/ArticlePre';
 import CreateArticle from './createArticle';
 import ImgSwiper from '@/components/ImgSwiper';
 import OfficialInfo from '@/components/OfficialInfo';
 import RecTopic from '@/components/RecTopic';
 import RecUser from '@/components/RecUser';
+import { GlobalStateType } from '@/interfaces/global';
+import { LoginProps } from '@/interfaces/login';
+import type { CSSProperties,FC } from 'react';
 
-const Home = (props:any) => {
+
+const Home:FC<LoginProps> = ({global,dispatch}) => {
+  useEffect(() => {
+    async function effectFun() {
+        if (dispatch){
+          await dispatch({
+              type: 'global/getHomeData',
+              payload:{
+                articleNum:5
+              } 
+          })
+      }
+
+    }
+    effectFun()
+  },[])
+
 
   return (
     <div className={styles.homePart}>
@@ -30,11 +50,15 @@ const Home = (props:any) => {
 
           <div className={styles.homeContent}>
             <Content>
-              <AritclPre></AritclPre>
-              <AritclPre></AritclPre>
-              <AritclPre></AritclPre>
-              <AritclPre></AritclPre>
-              <AritclPre></AritclPre>
+            {Array.from(global.homeArtData.articles).map((value:any,index)=>{
+              return(
+                <div className={styles.card}>
+                  <AritclPre {...{data:global.homeArtData,index:index}}></AritclPre>
+                </div>
+              )
+          })
+          }
+
             </Content>
           </div>
         </Layout>
@@ -54,4 +78,9 @@ const Home = (props:any) => {
   );
 };
 
-export default Home;
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(Home);

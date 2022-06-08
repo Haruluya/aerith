@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { Form, Select,Input,Tag, InputNumber, Button, Divider, message } from 'antd';
 import ReactDom from 'react-dom'
@@ -9,15 +8,49 @@ import {FormOutlined} from '@ant-design/icons'
 import { Modal, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { history } from 'umi';
-const AddAritcle = (props) => {
+import {connect,Loading} from 'umi';
+import { LoginProps } from '@/interfaces/login';
+import type { CSSProperties,FC } from 'react';
+import { GlobalStateType } from '@/interfaces/global';
+import { Value } from 'sass';
+const AddAritcle:FC<LoginProps> = ({global,dispatch}) => {
     // 表单配置。
+
+
     const layout = {
         labelCol: { span: 5 },
         wrapperCol: { span: 14},
       };
-    const onFinish = (values: any) => {
-        console.log(values);
-    }
+    // 提交确认。
+    const onFinish = (values:any)=>{
+        Modal.confirm({
+          title: '发布',
+          icon: <ExclamationCircleOutlined />,
+          content: '你确认发布吗？',
+          okText: '确认',
+          cancelText: '取消',
+          onOk:async ()=>{
+            if (dispatch){
+                await dispatch({
+                    type: 'global/addArticle',
+                    payload:{
+                        uid:global.userData.id,
+                        tid:values.article.template,
+                        title:values.article.title,
+                        description:values.article.describe,
+                        content:values.article.content,
+                        status:1,
+                        cover:values.article.cover,
+                        create_time:new Date(),
+                        update_time:new Date()
+                    } 
+                })
+              }
+              history.push('/home');
+              message.success("发布成功");
+          }
+        });
+      }
     const validateMessages = {
         required: '${label} is required!',
         types: {
@@ -31,9 +64,9 @@ const AddAritcle = (props) => {
 
     // tag渲染。
     const options = [{ value: 'gold' }, { value: 'lime' }, { value: 'green' }, { value: 'cyan' }];
-    function tagRender(props) {
+    function tagRender(props:any) {
         const { label, value, closable, onClose } = props;
-        const onPreventMouseDown = event => {
+        const onPreventMouseDown = (event:any) => {
           event.preventDefault();
           event.stopPropagation();
         };
@@ -52,28 +85,15 @@ const AddAritcle = (props) => {
     //   板块select处理程序。
       const { Option } = Select;
 
-      function onChange(value) {
+      function onChange(value:any) {
         console.log(`selected ${value}`);
       }
       
-      function onSearch(val) {  
+      function onSearch(val:any) {  
         console.log('search:', val);
       }
 
-    // 提交确认。
-    function confirmSubmit() {
-        Modal.confirm({
-          title: '发布',
-          icon: <ExclamationCircleOutlined />,
-          content: '你确认发布吗？',
-          okText: '确认',
-          cancelText: '取消',
-          onOk:()=>{
-              message.success("发布成功");
-              history.push('/home');
-          }
-        });
-      }
+
     return(
         <div className={styles.mainContainer}>
             <div className={styles.header}>
@@ -105,9 +125,9 @@ const AddAritcle = (props) => {
                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
-                        <Option value="jack">闲聊</Option>
-                        <Option value="lucy">攻略</Option>
-                        <Option value="tom">求助</Option>
+                        <Option value={2}>闲聊</Option>
+                        <Option value={3}>攻略</Option>
+                        <Option value={4}>反馈</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item name={['article', 'tags']} label="标签">
@@ -122,11 +142,12 @@ const AddAritcle = (props) => {
                     />
                 </Form.Item>
                 <Form.Item name={['article', 'cover']} label="封面" rules={[]}>
-                    <ProFormUploadDragger max={4} name="dragger" />
+                    {/* <ProFormUploadDragger max={4} name="dragger" /> */}
+                    <Input prefix={<FormOutlined />} style={{width:'50%'}}/>
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Button type="primary" htmlType="submit" shape='round' size='large'
-                        onClick={confirmSubmit} >
+                         >
                         发布
                     </Button>
                 </Form.Item>
@@ -135,4 +156,11 @@ const AddAritcle = (props) => {
         </div>
     )
 }
-export default AddAritcle;
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(AddAritcle);
+
+

@@ -7,16 +7,23 @@ import {
   WeiboOutlined,
   TaobaoOutlined,
 } from '@ant-design/icons';
-import { message, Divider, Tabs, Space, Button } from 'antd';
+import { message, Divider, Tabs, Space, Button,Form } from 'antd';
 import type { CSSProperties,FC } from 'react';
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 import { LoginStateType,LoginProps } from '@/interfaces/login';
 import {connect,Loading,history} from 'umi';
 import Register from '@/components/Register'
+import FoundPassword from './FoundPassword';
 import { GlobalStateType } from '@/interfaces/global';
 import styles from './index.less'
 import { urlencoded } from '@umijs/deps/compiled/express';
 type LoginType = 'phone' | 'account';
+
+const ZhenzismsClient = require('./zhenzisms');
+var client = new ZhenzismsClient("sms_developer.zhenzikj.com", '111704', 'ODcyM2M2NTItYjZkOS00MjQ1LWFkYmItZjFlZWU0ZmQ0NmU4');
+
+let code = ""
+
 
 const logo = require('@/assets/images/logo.png')
 const iconStyles: CSSProperties = {
@@ -36,7 +43,29 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
       // 表单提交。
         onFinish={async (values)=>{
             console.log(values)
-            if (dispatch){
+
+            console.log(code)
+
+            if (values.mobile){
+              if (code != values.code){
+                message.error('验证码错误！');
+                return;
+              }
+              if (dispatch){
+                await dispatch({
+                    type: 'login/loginbymobile',
+                    payload:values 
+                })
+                await dispatch({
+                  type: 'global/getUserData',
+                })
+                console.log(global.userData);
+                if(global.userData.islogin){
+                  history.push('/home');
+                }
+              }
+            }else{
+              if (dispatch){
                 await dispatch({
                     type: 'login/login',
                     payload:values 
@@ -48,6 +77,7 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
                 if(global.userData.islogin){
                   history.push('/home');
                 }
+              }
             }
         }}
         backgroundImageUrl="https://w.wallhaven.cc/full/k7/wallhaven-k7gd8q.png"
@@ -194,21 +224,34 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
                 size: 'large',
               }}
               placeholder={'请输入验证码'}
+              phoneName="mobile"
               captchaTextRender={(timing, count) => {
                 if (timing) {
                   return `${count} ${'获取验证码'}`;
                 }
                 return '获取验证码';
               }}
-              name="captcha"
+              name="code"
               rules={[
                 {
                   required: true,
                   message: '请输入验证码！',
                 },
               ]}
-              onGetCaptcha={async () => {
+              onGetCaptcha={async (mobile) => {    
+                let params = {
+                  templateId:"",
+                  number:"",
+                  templateParams:[]
+                };
+                params.templateId = '9472';
+                params.number = mobile;
+                code = Math.random().toFixed(6).slice(-6);
+                console.log(code);
+                params.templateParams = [code, "5分钟"];
+                let res = client.send(params); 
                 message.success('获取验证码成功！');
+                
               }}
             />
           </>
@@ -221,13 +264,7 @@ const Login:FC<LoginProps> =  ({login,global,dispatch}) => {
           <ProFormCheckbox noStyle name="autoLogin">
             自动登录
           </ProFormCheckbox>
-          <a
-            style={{
-              float: 'right',
-            }}
-          >
-            忘记密码
-          </a>
+          <FoundPassword/>
         </div>
       </LoginFormPage>
     </div>

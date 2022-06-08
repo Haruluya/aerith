@@ -1,17 +1,21 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export default class FocusUser {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
-  id?: Number;
+  id?: number;
 
+  @ApiProperty()
   @Column()
-  uid: Number;
+  uid: number;
 
+  @ApiProperty()
   @Column()
-  fuid: Number;
+  fuid: number;
 
+  @ApiProperty()
   @Column()
-  focus_time: Number;
+  focus_time: number;
 
 }

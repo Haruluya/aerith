@@ -14,18 +14,17 @@ import {
   TaobaoOutlined,
 } from '@ant-design/icons';
 import styles from './index.less'
-
 const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
-    <Select style={{ width: 120 }}>
-      <Option value="86">中国大陆 +86</Option>
-      <Option value="852">中国香港 +852</Option>
-      <Option value="853">中国澳门 +853</Option>
-      <Option value="886">中国台湾 +886</Option>
-    </Select>
-  </Form.Item>
-);
-const ZhenzismsClient = require('./zhenzisms');
+    <Form.Item name="prefix" noStyle>
+      <Select style={{ width: 120 }}>
+        <Option value="86">中国大陆 +86</Option>
+        <Option value="852">中国香港 +852</Option>
+        <Option value="853">中国澳门 +853</Option>
+        <Option value="886">中国台湾 +886</Option>
+      </Select>
+    </Form.Item>
+  );
+const ZhenzismsClient = require('../zhenzisms');
 let code = ''
 var client = new ZhenzismsClient("sms_developer.zhenzikj.com", '111704', 'ODcyM2M2NTItYjZkOS00MjQ1LWFkYmItZjFlZWU0ZmQ0NmU4');
 const Register:FC<LoginProps> =  ({login, dispatch}) => {
@@ -35,7 +34,7 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
       <ModalForm
         title="Aerith"
         formRef={formRef}
-        trigger={<Button type="primary">注册</Button>}
+        trigger={<a type="primary">找回密码</a>}
         submitter={{
           render: (props, defaultDoms) => {
             return [
@@ -53,20 +52,19 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
         }}
         onFinish={async (values) => {
           console.log(values)
-
+          
           if (code != values.code){
             message.error('验证码错误！');
             return;
           }
-          const {username,password,mobile,avatar,passwordConfirm} = values;
+          
+          const {mobile,password,passwordConfirm} = values;
           if (dispatch){
             await dispatch({
-              type: 'login/register',
+              type: 'login/foundpassword',
               payload: {
-                username,
-                password,
                 mobile,
-                avatar
+                'newpassword':password
               }
             });
             message.success('提交成功');
@@ -76,15 +74,6 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
           return true;
         }}
       >
-        <ProFormText
-          width="md"
-          name="username"
-          label="账号"
-          tooltip="最长为 24 位"
-          placeholder="请输入名称"
-          rules={[{ required: true, message: '用户名名称不为空！' }]}
-
-        />
 
         <ProFormText className={styles.phone} width="md" name="mobile" label="手机号" placeholder="请输入手机号"
           rules={[{ required: true, message: '电话号码不为空！' },
@@ -138,7 +127,7 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
             }}
           />
           </div>
-        <ProFormText.Password width="md" name="password" label="密码" placeholder="请输入密码" 
+        <ProFormText.Password width="md" name="password" label="新密码" placeholder="请输入密码" 
           rules={
             [
               {
@@ -147,12 +136,12 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
               }
             ]
           } />
-        <ProFormText.Password width="md" name="passwordConfirm" label="确认密码" placeholder="请输入确认密码"
+        <ProFormText.Password width="md" name="passwordConfirm" label="确认新密码" placeholder="请输入确认密码"
           dependencies={['password']}
           rules={[
             {
               required: true,
-              message: '请输入确认密码!',
+              message: '请输入新密码!',
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
@@ -164,9 +153,6 @@ const Register:FC<LoginProps> =  ({login, dispatch}) => {
             }),
           ]}
         />
-        <ProFormText width="md" name="avatar" label="头像" placeholder="请输入图片url"
-         rules={[ { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
-          />
       </ModalForm>
     </Space>
   );

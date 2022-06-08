@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
 
+
 // 前端请求接口。
 class ErrorInfoStructure {
     success: boolean; // if request is success
@@ -17,19 +18,18 @@ class ErrorInfoStructure {
 // 用户登录请求体。
 export class LoginData{
     @ApiProperty()
-    mobile?:string;
-    @ApiProperty()
     username?:string;
     @ApiProperty()
     password?:string;
 
 }
 
-// 获取用户信息请求体。
+
+
+
 export class TokenData{
     @ApiProperty()
     token:string
-
 }
 
 
