@@ -16,7 +16,15 @@ export class CommentService {
     getCommentByArticleId(aid:number){
         return this.commentRepository
             .createQueryBuilder("comment")
-            .where("comment.aid",{aid})
+            .where("comment.aid = :aid",{aid})
+            .andWhere("comment.parent = 0")
+            .getMany()
+    }
+
+    findChilren(id:number){
+        return this.commentRepository
+            .createQueryBuilder("comment")
+            .where("comment.parent = :id",{id})
             .getMany()
     }
 
@@ -32,7 +40,7 @@ export class CommentService {
     getCommentByUser(uid:number){
         return this.commentRepository
             .createQueryBuilder("comment")
-            .where("comment.uid",{uid})
+            .where("comment.uid = :uid",{uid})
             .getMany()
     }
 

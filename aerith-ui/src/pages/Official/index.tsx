@@ -44,7 +44,7 @@ export default function Official() {
       <div className={styles.officialContent}>
         <Content>
         <div className={styles.articles}>
-          {Array.from([1,2,3,4,5]).map((value,index)=>{
+          {Array.from([1,2]).map((value,index)=>{
               return(
                 <div className={styles.card}>
                   <OfficialCard/>

@@ -171,7 +171,41 @@ export class UserController {
 
         return jsonRes._success({})
     }
+    @ApiOperation({ summary: '修改用户' })
+    @Post('updateUser')
+    async updateUser(@Body() data:User){
 
+    }
+
+    @ApiOperation({ summary: '查看用户详细信息' })
+    @Post('getUserInfo')
+    async getUserInfo(@Body() data:User){
+
+    }
+
+    @ApiOperation({ summary: '查看用户属性' })
+    @Post('getUserValue')
+    async getUserValue(@Body() data:User){
+
+    }
+
+    @ApiOperation({ summary: '批量删除用户' })
+    @Post('deleteBackUser')
+    async deleteBackUser(@Body() data:User){
+
+    }
+
+    @ApiOperation({ summary: '批量更新用户' })
+    @Post('updateBackUser')
+    async updateBackUser(@Body() data:User){
+
+    }
+
+    @ApiOperation({ summary: '批量添加用户' })
+    @Post('addBack用户')
+    async addBackUser(@Body() data:User){
+
+    }
 }
 
 

@@ -17,17 +17,27 @@
             transform: translateX(145px);
         }
     }
-
+    .avatar{
+        transform: translateY(-5px);
+    }
     .userListContainer{
         margin-top: 15px;
         .userItemContainer{
             position: relative;
             height: 50px;
             margin-top: 10px;
+            padding: 5px;
+            &:hover{
+                background-color: #e7ffff;
+                border-radius: 20px;
+                transform: translateY(-5px) scale(1.01);
+            }
+            
             .userDes{
                 top: 0px;
                 left: 65px;
                 position: absolute;
+                transform: translateY(-5px);
                 .userName{
                     font-size: 16px;
                     text-align: left;

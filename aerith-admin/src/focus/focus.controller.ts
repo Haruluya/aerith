@@ -8,7 +8,7 @@ import { UserService } from 'src/user/user.service';
 
 const jsonRes = new JSONRes()
 @ApiTags('focus')
-@Controller('focus')
+@Controller('aerithi/focus')
 export class FocusController {
     constructor(
         private readonly focucService:FocusService,
@@ -22,7 +22,13 @@ export class FocusController {
         return jsonRes._success({
         })
     }
-
+    @ApiOperation({ summary: '删除用户关注' })
+    @Post('deleteUserFocus')
+    async deleteUserFocus(@Body() data:FocusUser){
+        let result = await this.focucService.deleteUserFocus(data);
+        return jsonRes._success({
+        })
+    }
     @ApiOperation({ summary: '根据id查看用户关注用户信息' })
     @Post('getUserFocusById')
     async getUserFocusById(@Body() data:FocusUser){
@@ -53,6 +59,43 @@ export class FocusController {
             result
         })
         
+    }
+
+
+    @ApiOperation({ summary: '修改用户' })
+    @Post('updateFocus')
+    async updateFocus(@Body() data:FocusUser){
+
+    }
+
+    @ApiOperation({ summary: '查看用户详细信息' })
+    @Post('getFocusInfo')
+    async getFocusInfo(@Body() data:FocusUser){
+
+    }
+
+    @ApiOperation({ summary: '查看用户属性' })
+    @Post('getFocusValue')
+    async getFocusValue(@Body() data:FocusUser){
+
+    }
+
+    @ApiOperation({ summary: '批量删除用户' })
+    @Post('deleteBackFocus')
+    async deleteBackFocus(@Body() data:FocusUser){
+
+    }
+
+    @ApiOperation({ summary: '批量更新用户' })
+    @Post('updateBackFocus')
+    async updateBackFocus(@Body() data:FocusUser){
+
+    }
+
+    @ApiOperation({ summary: '批量添加用户' })
+    @Post('addBack用户')
+    async addBackFocus(@Body() data:FocusUser){
+
     }
 
 

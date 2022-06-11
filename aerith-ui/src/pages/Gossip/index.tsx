@@ -28,7 +28,7 @@ const Gossip:FC<LoginProps> =  ({global,dispatch}) => {
           await dispatch({
               type: 'global/getGrossiData',
               payload:{
-                tid:1
+                tid:2
               } 
           })
       }

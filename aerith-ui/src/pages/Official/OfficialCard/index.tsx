@@ -1,12 +1,12 @@
 import { Tag} from 'antd'
 import React from 'react'
 import styles from './index.less'
-
+import { history } from 'umi';
 import { Link } from 'umi';
 
 export default function OfficialCard() {
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.mainContainer} onClick={()=>{history.push('/articledetail?aid=44')}}>
         <div className={styles.tags}>
             <Tag color={'red'}>
                 官方

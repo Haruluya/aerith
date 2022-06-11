@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './index.less'
 import { SnippetsTwoTone ,EditTwoTone,RightOutlined,CameraTwoTone,ContactsTwoTone,ContainerTwoTone} from '@ant-design/icons'
 import { Button, Space ,Divider} from 'antd'
@@ -6,10 +6,25 @@ import { history } from 'umi'
 import { connect,Loading} from 'umi';
 import { GlobalStateType ,HeaderProps} from '@/interfaces/global';
 import {useEffect,FC} from 'react'
-const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
-  
+const CreateArticle:FC<HeaderProps> = ({global,dispatch,setReflash})=>{
 
-  
+
+  useEffect(() => {
+    async function effectFun() {
+        if (dispatch){
+          await dispatch({
+              type: 'global/getPostData',
+              payload:{
+                uid:global.userData.id
+              } 
+          })
+
+      }
+    }
+    effectFun()
+  },[])
+  setReflash(true);
+
   return (
     <div className={styles.createArticlePart}>
       <div className={styles.title}>
@@ -36,7 +51,7 @@ const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
       <Space size={0} split={<span></span>} className={styles.tags}>
         <Button type='link'>
           <div className={styles.tag}>
-            <EditTwoTone style={{fontSize:'30px'}}/>
+            <EditTwoTone style={{fontSize:'30px'}} onClick={()=>{history.push('addarticle')}}/>
             <div>
               发帖
             </div>
@@ -44,7 +59,7 @@ const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
         </Button>
         <Button type='link'>
           <div className={styles.tag}>
-            <CameraTwoTone style={{fontSize:'30px'}}/>
+            <CameraTwoTone style={{fontSize:'30px'}} onClick={()=>{history.push('addarticle')}}/>
 
             <div>
               发图片
@@ -53,7 +68,7 @@ const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
         </Button>
         <Button type='link'>
           <div className={styles.tag}>
-            <ContactsTwoTone style={{fontSize:'30px'}}/>
+            <ContactsTwoTone style={{fontSize:'30px'}} onClick={()=>{history.push('addarticle')}}/>
             <div>
               发视频
             </div>
@@ -61,7 +76,7 @@ const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
         </Button>
         <Button type='link'>
           <div className={styles.tag}>
-            <ContainerTwoTone style={{fontSize:'30px'}}/>
+            <ContainerTwoTone style={{fontSize:'30px'}} onClick={()=>{history.push('addarticle')}}/>
             <div>
               发文件
             </div>
@@ -79,7 +94,7 @@ const CreateArticle:FC<HeaderProps> = ({global,dispatch})=>{
         {global.userData.islogin &&
         (
           <div className={styles.indexContent}>
-          0
+          {global.myPostData.length}
         </div>
         )
         }

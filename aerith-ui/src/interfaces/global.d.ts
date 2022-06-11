@@ -10,7 +10,12 @@ export interface GlobalStateType{
     userData:UserData,
     homeArtData:any,
     artDataDetail:any,
-    grossiData:any
+    grossiData:any,
+    artCommentData:any,
+    myCommentData:any,
+    myPostData:any,
+    myFocus:any,
+    myFan:any
 }
 
 // 全局Dva模块接口。
@@ -23,7 +28,17 @@ export interface GlobalDvaType{
         addArticle:Effect;
         getHomeData:Effect;
         getArticleDataById:Effect;
-        getGrossiData:Effect
+        getGrossiData:Effect;
+        deleteArticle:Effect;
+        getArticleCommentDataById:Effect;
+        addComment:Effect;
+        deleteComment:Effect;
+        getCommentData:Effect;
+        getPostData:Effect;
+        addFocus:Effect;
+        getFanData:Effect;
+        getFocusData:Effect;
+        deleteFocus:Effect
     };
     reducers: {
         setUserData: Reducer<GlobalStateType>;

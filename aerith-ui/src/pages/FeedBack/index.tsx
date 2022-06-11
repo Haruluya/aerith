@@ -19,7 +19,13 @@ export default function FeedBack() {
   const changeTap = ({key})=>{
     setMenuKey(key);
   }
-
+  const data = [
+    {title:"react父组件重绘时子组件渲染不及时！"},
+    {title:"umijs打包速度太慢了！！！！"},
+    {title:"注意typescript规范！"},
+    {title:"快写不完了！"},
+    {title:"BUG太多了！"}
+  ]
   return (
     <>
     <div className={styles.feedbackPart}>
@@ -27,10 +33,10 @@ export default function FeedBack() {
       <div className={styles.feedbackContent}>
         <Content>
         <div className={styles.articles}>
-          {Array.from([1,2,3,4,5]).map((value,index)=>{
+          {Array.from(data).map((value,index)=>{
               return(
                 <div className={styles.card}>
-                    <FeedBackCard/>
+                    <FeedBackCard {...{data:value,index}}/>
                 </div>
               )
           })

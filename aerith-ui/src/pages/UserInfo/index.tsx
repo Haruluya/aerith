@@ -19,7 +19,6 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
   const nickName = global.userData.nickname;
   
   
-  
   // 左侧菜单。
   const infoMenu:Array<string> = [
     "我的发帖","我的评论","我的信息","|","我的粉丝","我的关注","我的等级","|","关于Haruluya","关于Aerith"
@@ -77,20 +76,21 @@ const UserInfo:FC<UserInfoProps> = ({global,dispatch,children})=>{
                 <Divider type='vertical' style={{height:"50px", width:"30px"}}/>
                 <div className={styles.siderInfo}>
                   <div className={styles.name}>
-                    <span className={styles.nickName}>haruluya</span>
+                    <span className={styles.nickName}>{global.userData.username}</span>
                     <Tag className={styles.level } color='red'>
-                      LV{level}
+                      LV{global.userData.level}
                     </Tag>
-                    <Button size='large' className={styles.modify} type="primary">
+                    <Button size='large' className={styles.modify} type="primary"
+                        onClick={()=>{history.push('/userinfo/myinfo')}}>
                       编辑
                     </Button>
                     <div className={styles.id}>
-                      AerithID:1
+                      AerithID:{global.userData.id}
                     </div>
                   </div>
                   <div className={styles.signature}>
                       {iconCreate('EditTwoTone')}
-                      {signature}
+                      {global.userData.signature}
                   </div>
                   <Divider/>
                   <div className={styles.indexPanel}>

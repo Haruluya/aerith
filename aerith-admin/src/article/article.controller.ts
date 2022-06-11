@@ -6,6 +6,7 @@ import { Request } from 'express'
 import { ArticleRequest } from './dto/article-dto';
 import Article from './article.entity';
 import { UserService } from 'src/user/user.service';
+import { CommentService } from 'src/comment/comment.service';
 const jsonRes = new JSONRes()
 
 @ApiTags('Article')
@@ -14,6 +15,7 @@ export class ArticleController {
     constructor(
         private readonly articleService:ArticleService,
         private readonly userService:UserService,
+        private readonly commentService:CommentService,
     ){}
 
     @ApiOperation({ summary: '读取n个文章数据' })
@@ -34,9 +36,10 @@ export class ArticleController {
         })
     }
 
-    @ApiOperation({ summary: '根据用户id获取文章数据' })
+    @ApiOperation({ summary: '根据文章id获取文章数据' })
     @Post('getArticleDataById')
     async getArticleDataById(@Body() data:ArticleRequest){
+
         let result = await this.articleService.getArticlesById(data.uid);
         return jsonRes._success({
             result
@@ -86,11 +89,49 @@ export class ArticleController {
     @ApiOperation({ summary: '删除文章' })
     @Post('deleteArticle')
     async deleteArticle(@Body() data:Article){
+        let comments = await this.commentService.getCommentByArticleId(data.id);
+        for (let i = 0; i < comments.length; i++){
+            await this.commentService.deleteComment(comments[i].id);
+        }
         await this.articleService.deleteArticle(data.id);
         return jsonRes._success({
         })
     }
+    @ApiOperation({ summary: '修改文章' })
+    @Post('updateArticler')
+    async updateArticle(@Body() data:Article){
 
+    }
+
+    @ApiOperation({ summary: '查看文章详细信息' })
+    @Post('getArticleInfo')
+    async getArticleInfo(@Body() data:Article){
+
+    }
+
+    @ApiOperation({ summary: '查看文章属性' })
+    @Post('getArticleValue')
+    async getArticleValue(@Body() data:Article){
+
+    }
+
+    @ApiOperation({ summary: '批量删除文章' })
+    @Post('deleteBackArticle')
+    async deleteBackArticle(@Body() data:Article){
+
+    }
+
+    @ApiOperation({ summary: '批量更新文章' })
+    @Post('updateBackArticle')
+    async updateBackArticle(@Body() data:Article){
+
+    }
+
+    @ApiOperation({ summary: '批量添加文章' })
+    @Post('addBack文章')
+    async addBackArticle(@Body() data:Article){
+
+    }
 
 
 }

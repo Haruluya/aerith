@@ -44,7 +44,9 @@ const AddAritcle:FC<LoginProps> = ({global,dispatch}) => {
                         create_time:new Date(),
                         update_time:new Date()
                     } 
+
                 })
+
               }
               history.push('/home');
               message.success("发布成功");
@@ -110,7 +112,7 @@ const AddAritcle:FC<LoginProps> = ({global,dispatch}) => {
                     <Input />
                 </Form.Item>
                 <Form.Item name={['article', 'content']} label="内容" rules={[]}>
-                    <Content></Content>
+                  <div><Input.TextArea showCount defaultValue="输入帖子内容:" maxLength={10000} style={{ height: 450 }}/></div>
                 </Form.Item>
                 <Form.Item name={['article', 'template']} label="板块">
                     <Select

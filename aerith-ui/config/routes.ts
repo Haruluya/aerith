@@ -69,6 +69,10 @@ const routes:Array<object> =
                     component: 'UserInfo',
                     routes:[
                         {
+                            path: '/userinfo/',
+                            component: './UserInfo/MyPost',
+                        },
+                        {
                             path: '/userinfo/aboutaerith',
                             component: './UserInfo/AboutAerith'
                         },

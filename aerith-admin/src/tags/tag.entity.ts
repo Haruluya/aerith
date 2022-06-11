@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export default class FocusArticle {
+export default class Tag {
   @PrimaryGeneratedColumn()
   id?: Number;
 

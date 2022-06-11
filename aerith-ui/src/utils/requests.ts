@@ -66,4 +66,43 @@ export const   postgetGrossiData= (data:object)=>
     request.post(`/${AERITH_API}/article/getArticleDataByTemplate`,{
         data,
     })
-   
+export const  postdeleteArticle= (data:object)=>
+    request.post(`/${AERITH_API}/article/deleteArticle`,{
+        data,
+    })
+export const postgetArticleCommentDataById= (data:object)=>
+    request.post(`/${AERITH_API}/comment/getCommentByArticleId`,{
+        data,
+    })
+export const postaddComment= (data:object)=>
+    request.post(`/${AERITH_API}/comment/addComment`,{
+        data,
+    })
+export const postdeleteComment= (data:object)=>
+    request.post(`/${AERITH_API}/comment/deleteComment`,{
+        data,
+    })
+export const postagetPostData= (data:object)=>
+    request.post(`/${AERITH_API}/article/getArticleDataById`,{
+        data,
+    })
+export const postCommentData= (data:object)=>
+    request.post(`/${AERITH_API}/comment/getCommentByUser`,{
+        data,
+    })
+export const postaddFocus= (data:object)=>
+    request.post(`/${AERITH_API}/focus/addUserFocus`,{
+        data,
+    })
+export const postgetFanData= (data:object)=>
+    request.post(`/${AERITH_API}/focus/getUserFanById`,{
+        data,
+    })
+export const postgetFocusData= (data:object)=>
+    request.post(`/${AERITH_API}/focus/getUserFocusById`,{
+        data,
+    })
+export const postdeleteFocus= (data:object)=>
+    request.post(`/${AERITH_API}/focus/deleteUserFocus`,{
+        data,
+    })

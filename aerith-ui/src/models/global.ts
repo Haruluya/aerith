@@ -1,5 +1,5 @@
 
-import {userData,updateInfo,addArticle,getHomeData,getGrossiData,getArticleDetail} from '@/services/user';
+import {userData,deleteFocus,updateInfo,getFanData,getFocusData,addFocus,getCommentData,getPostData,addArticle,deleteComment,addComment,getArticleCommentDataById,deleteArticle,getHomeData,getGrossiData,getArticleDetail} from '@/services/user';
 import { message, notification } from 'antd';
 import { UserData,GlobalDvaType} from '@/interfaces/global';
 import { getToken } from '@/utils/token';
@@ -29,6 +29,20 @@ const GlobalDva: GlobalDvaType = {
         users:[]
       },
       artDataDetail:{
+      },
+      artCommentData:{
+      },
+      myCommentData:{
+
+      },
+      myPostData:{
+
+      },
+      myFocus:{
+
+      },
+      myFan:{
+
       }
     },
     effects: {
@@ -59,9 +73,76 @@ const GlobalDva: GlobalDvaType = {
         }
         message.success('更新信息成功！');;
       },
+      *getFocusData({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getFocusData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setFocusData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
+      *getFanData({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getFanData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setFanData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
       *updateInfo({ payload }, { call, put }) {
         // 请求验证。
         const result = yield call(updateInfo, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+
+      },
+      *addFocus({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(addFocus, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+
+      },
+      *addComment({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(addComment, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+
+      },
+      *deleteFocus({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(deleteFocus, payload);
         // 响应失败。
         if (!result) {
           message.error('更新信息失败！');
@@ -81,6 +162,77 @@ const GlobalDva: GlobalDvaType = {
         message.success('更新信息成功！');
         yield put({
           type: 'setGrossiData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
+      *getCommentData({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getCommentData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setCommentData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
+      *getPostData({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getPostData, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setPostData',
+          payload: {
+            data : result.result
+          },
+
+        });
+      },
+      *deleteArticle({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(deleteArticle, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+      },
+      *deleteComment({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(deleteComment, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+      },
+      *getArticleCommentDataById({ payload }, { call, put }) {
+        // 请求验证。
+        const result = yield call(getArticleCommentDataById, payload);
+        // 响应失败。
+        if (!result) {
+          message.error('更新信息失败！');
+          return;
+        }
+        message.success('更新信息成功！');
+        yield put({
+          type: 'setArtCommentData',
           payload: {
             data : result.result
           },
@@ -150,19 +302,52 @@ const GlobalDva: GlobalDvaType = {
         };
       },
       setArticleData(state,{payload}){
-        console.log(payload)
         return {
           ...state,
           artDataDetail:payload.data
         };
       },
       setGrossiData(state,{payload}){
-        console.log(payload)
         return {
           ...state,
           grossiData:payload.data
         };
-      }
+      },
+      setArtCommentData(state,{payload}){
+        console.log(payload,"xx")
+        return{
+          ...state,
+          artCommentData:payload.data
+        }
+      },
+      setCommentData(state,{payload}){
+        console.log(payload,"xx")
+        return{
+          ...state,
+          myCommentData:payload.data
+        }
+      },
+      setPostData(state,{payload}){
+        console.log(payload,"xx")
+        return{
+          ...state,
+          myPostData:payload.data
+        }
+      },
+      setFocusData(state,{payload}){
+        console.log(payload)
+        return{
+          ...state,
+          myFocus:payload.data
+        }
+      },
+      setFanData(state,{payload}){
+        console.log(payload,"aaaaa")
+        return{
+          ...state,
+          myFan:payload.data
+        }
+      },
     },
   };
 

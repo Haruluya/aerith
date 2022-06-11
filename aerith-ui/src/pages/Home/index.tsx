@@ -1,6 +1,6 @@
 import Layout, { Content, Header } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -20,6 +20,7 @@ import type { CSSProperties,FC } from 'react';
 
 
 const Home:FC<LoginProps> = ({global,dispatch}) => {
+  let [reflash,setReflash] = useState(false)
   useEffect(() => {
     async function effectFun() {
         if (dispatch){
@@ -29,6 +30,8 @@ const Home:FC<LoginProps> = ({global,dispatch}) => {
                 articleNum:5
               } 
           })
+
+
       }
 
     }
@@ -65,7 +68,7 @@ const Home:FC<LoginProps> = ({global,dispatch}) => {
       </div>
       <div className={styles.homeSider}>
         <Sider  width={300} style={{backgroundColor:'#f0f2f5'}}>
-          <CreateArticle></CreateArticle>
+          <CreateArticle {...{global,dispatch,setReflash}}></CreateArticle>
           <ImgSwiper></ImgSwiper>
           <OfficialInfo></OfficialInfo>
           <RecTopic></RecTopic>

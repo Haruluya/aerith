@@ -29,7 +29,7 @@ const Strategy:FC<LoginProps> = ({global,dispatch}) => {
           await dispatch({
               type: 'global/getGrossiData',
               payload:{
-                tid:2
+                tid:3
               } 
           })
       }
@@ -42,6 +42,14 @@ const Strategy:FC<LoginProps> = ({global,dispatch}) => {
   const changeTap = ({key})=>{
     setMenuKey(key);
   }
+
+  const linkData = [
+    {title:"Aerith",link:"https://github.com/Haruluya/aerith",img:"https://ts1.cn.mm.bing.net/th?id=OIP-C.xvlPNtuO_VGmGlclvH9InAHaE5&w=176&h=170&c=8&rs=1&qlt=90&o=6&dpr=1.38&pid=3.1&rm=2"},
+    {title:"Tifa",link:"https://github.com/Haruluya/tifa",img:"https://ts1.cn.mm.bing.net/th?id=OIP-C.J1b0ebbbukD1i8J_rZ784AHaHa&w=169&h=170&c=8&rs=1&qlt=90&o=6&dpr=1.12&pid=3.1&rm=2"},
+    {title:"Cloud",link:"https://github.com/Haruluya/cloud",img:"https://tse3-mm.cn.bing.net/th/id/OIP-C.c7JM_jATydn62u9dwtzd2gHaE8?w=254&h=180&c=7&r=0&o=5&dpr=1.12&pid=1.7"},
+    {title:"Jessie",link:"https://github.com/Haruluya/Jessie",img:"https://tse4-mm.cn.bing.net/th/id/OIP-C.4N1KvBiyj7TQD6hXjeAUjQHaDt?w=334&h=175&c=7&r=0&o=5&dpr=1.12&pid=1.7"},
+    {title:"Yuffie",link:"https://github.com/Haruluya/yuffie",img:"https://tse1-mm.cn.bing.net/th/id/OIP-C.kI6tYMszYSqu03OBOaFpwgHaEK?w=303&h=180&c=7&r=0&o=5&dpr=1.12&pid=1.7"}
+  ]
 
   return (
     <>
@@ -59,7 +67,7 @@ const Strategy:FC<LoginProps> = ({global,dispatch}) => {
                       最新发帖
                   </Menu.Item>
                   <Menu.Item key="class"  >
-                      标签选择
+                      网站导航
                   </Menu.Item>
               </Menu>
           </div>
@@ -99,15 +107,15 @@ const Strategy:FC<LoginProps> = ({global,dispatch}) => {
             (
                 <div className={styles.modelCards}>
                     <div className={styles.title}>
-                        Aerith
+                        GITHUB
                     </div>
                     <Divider/>
                     <Row gutter={40}>
-                    {Array.from([1,2,3,4,5]).map((value,index)=>{
+                    {Array.from(linkData).map((value,index)=>{
                         return (
                             <Col span={12}>
                                 <div className={styles.modelCard}>
-                                    <ModelCard></ModelCard>
+                                    <ModelCard {...{linkData:value}}></ModelCard>
                                 </div>
                             </Col>
                         )
