@@ -3,10 +3,30 @@ import styles from './index.less'
 import { ClockCircleTwoTone } from '@ant-design/icons'
 import { Avatar, Divider,Tabs, Button} from 'antd'
 import { Link } from 'umi'
+import { GlobalStateType } from '@/interfaces/global'
 const { TabPane } = Tabs;
 import { Form, Input, InputNumber} from 'antd';
 import {connect,Loading} from 'umi';
-const MyInfo= ()=>{
+import { useEffect } from 'react'
+import { Modal, Space ,message} from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+const MyInfo= (props)=>{
+
+    useEffect(() => {
+
+        async function effectFun() {
+            if (props.dispatch){
+ 
+              await props.dispatch({
+                type:"global/getUserData"
+              })
+              
+          }
+      
+        }
+        effectFun().then(()=>{
+        })
+      },[])
 
     const layout = {
         labelCol: { span: 8 },
@@ -24,19 +44,44 @@ const MyInfo= ()=>{
         },
     };
       
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
         console.log(values);
+
+              if (props.dispatch){
+                console.log(values,"qqqqq");
+                await props.dispatch({
+                    type:"global/updateInfo",
+                    payload:{
+                      id:props.global.userData.id,
+                      email:values.user.email,
+                      nickname:values.user.headurl,
+                      avatar:values.user.name,
+                      signature:values.user.introduction,
+                      mobile:props.global.userData.mobile,
+                      username:props.global.userData.username
+                    }
+                  })
+
+
+              }
+              await props.dispatch({
+                type:"global/getUserData"
+              })
+                message.success("提交成功！");
     };
 
 
-  return (
+  return(
+    <>
+     {props.global.userData.id &&
+    (
     <div className={styles.mainContainer}>
         <div className={styles.pageTitle}>
             我的信息
         </div>
         <Divider/>
         <div className={styles.avatar}>
-            <Avatar size={120} src='https://avatars.githubusercontent.com/u/91101915?s=400&u=5e99ab150ba4a8d28e761e5c36a1800a8806221a&v=4'>
+            <Avatar size={120} src={props.global.userData.avatar}>
             </Avatar>
             <div className={styles.modifyButton}>
                 {/* <Button type='primary' shape='round'>
@@ -45,7 +90,7 @@ const MyInfo= ()=>{
             </div>
         </div>
         <div className={styles.form}>
-          <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+        <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
             <Form.Item name={['user', 'headurl']} label="昵称" rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
@@ -74,12 +119,17 @@ const MyInfo= ()=>{
         </Form>
         </div>
     </div>
-  )
+    )}
+    
+    </>
+)
+  
 }
 
 
 export default connect(
-  ({ loading }: { loading: Loading }) => ({
+  ({ global,loading }: {  global:GlobalStateType;loading: Loading }) => ({
     loading: loading.models.global,
+    global
   }),
 )(MyInfo);

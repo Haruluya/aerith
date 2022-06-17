@@ -101,7 +101,6 @@ const ArticleContent:FC<LoginProps>= ({location,global,dispatch,over,history})=>
         for (let i = 0 ; i < global.myFocus.length; i++){
             if (global.myFocus[i][0].id == global.artDataDetail.article[0].uid){
                 focused = true;
-                console.log('1');
             }
             console.log(global.myFocus[i],global.artDataDetail.article[0].uid,"X????");
         }

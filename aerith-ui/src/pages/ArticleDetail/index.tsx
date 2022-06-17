@@ -49,6 +49,10 @@ const ArticleDetaile:FC<LoginProps>= ({location,global,dispatch,history})=>{
               id:location.query.aid,
             } 
           })
+          await dispatch({
+            type:"global/getUserData"
+          })
+          
 
       }
     }

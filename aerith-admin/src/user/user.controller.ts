@@ -171,10 +171,21 @@ export class UserController {
 
         return jsonRes._success({})
     }
-    @ApiOperation({ summary: '修改用户' })
-    @Post('updateUser')
-    async updateUser(@Body() data:User){
 
+
+
+
+
+
+    
+    @ApiOperation({ summary: '修改用户' })
+    @Post('updateInfo')
+    async updateUser(@Body() data:User){
+        await this.userService.updateUser(data);
+        console.log(data,"xxxxxxxxxxx")
+        return jsonRes._success({
+            success:'success'
+        })
     }
 
     @ApiOperation({ summary: '查看用户详细信息' })

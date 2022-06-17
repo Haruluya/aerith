@@ -5,6 +5,9 @@ import styles from './index.less'
 export default function OfficialInfo() {
     const titleImgSrc = "https://img2.baidu.com/it/u=2895287139,3562509517&fm=253&fmt=auto&app=138&f=JPEG?w=843&h=500"
 
+    
+
+
   return (
     <div className={styles.officialInfoPart} onClick={()=>{history.push('articledetail?aid=28')}}>
         <div className={styles.titleContainer}>

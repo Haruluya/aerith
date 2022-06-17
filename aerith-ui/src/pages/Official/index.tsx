@@ -10,9 +10,28 @@ import RecTopic from '@/components/RecTopic';
 import TopMessage from '@/components/TopMessage';
 import {history} from 'umi'
 import OfficialCard from './OfficialCard';
+import { useEffect } from 'react';
+import {connect,Loading} from 'umi';
+import { GlobalStateType } from '@/interfaces/global';
+
+const Official = (props)=> {
+
+  useEffect(() => {
+
+    async function effectFun() {
+        if (props.dispatch){
+          await props.dispatch({
+            type:"global/getUserData"
+          })
+        }
+
+    }
+    effectFun().then(()=>{
+      
+    });
+  },[])
 
 
-export default function Official() {
   // 菜单切换回调。
   const [menuKey,setMenuKey] = useState("hot");
 
@@ -65,3 +84,10 @@ export default function Official() {
     </>
   )
 }
+
+export default connect(
+  ({ global,loading }: { global:GlobalStateType;loading: Loading }) => ({
+    loading: loading.models.global,
+    global,
+  }),
+)(Official);

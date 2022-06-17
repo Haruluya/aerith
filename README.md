@@ -4,7 +4,7 @@
 
 #### Target
 
-此项目为2022年数据库课程设计大作业：基于umijs&nestjs的web网站--【Aerith's game Froum】。旨在对web技术框架：react,umjs,nodejs,nestjs的学习。
+此项目为2022年数据库课程设计大作业：基于umijs&nestjs的web网站--【Aerith's game Froum】。旨在对web技术框架：reactjs,umjs,nodejs,nestjs的学习。
 
 **注：** 本项目开发从文档分析，组件设计，界面编写到代码测试都由本人独立完成。
 
@@ -35,111 +35,79 @@
 
 ### Function Introduction
 
+## 
+
+​	本项目以【游戏论坛】为题，基于框架Umijs、Nestjs，Typescript语法和规范、利用Swagger规范和可视化后端接口文档、以整洁统一的UI界面实现了完整的用户登录、用户注册、用户管理、文章浏览、文章搜索、板块分类、标签查找、Markdown文字渲染、文章发布、文章评论、用户关注、个人信息管理、浏览量统计，最新、最热文章统计等功能。
+
 ### Presentation
 
 #### **beta1---2022/4/30**
 
-★**以下画面不代表最终项目画面**
+#### final---2022/6/17
 
-#### **Show by pages:**
+##### 论坛主界面
 
-```tex
-Pages:
-	AboutPoj,
-	AddArticle,
-		Content,
-	Archives,
-	ArticleDetail,
-		ArticleComment,
-	FeedBack,
-		FeedBackCard,
-	Gossip,
-	Home,
-	Login,
-	Official,
-		OfficialCard,
-	Search,
-	Strategy,
-		ModelCard,
-	UserInfo,
-		AboutAerith,
-		AboutHaruluya,
-		MyComment,
-		MyFans,
-		MyFocus,
-		MyInfo,
-		MyLevel,
-		MyPost,
-```
+ 
 
-**①Home：**
+![img](.\static\document\wps1.jpg) 
 
-![image-20220502210234573](./static/document/image-20220502210234573.png)
+包括轮播图、部分个人信息、活动推荐、热门帖子的显示。
 
-**②Login**
+##### 板块主界面
 
-![image-20220502210701216](./static/document/image-20220502210701216.png)
+![img](.\static\document\wps2.jpg) 
 
-**③Gossip**
+包括置顶信息、所属板块文章和活动推荐的显示。
 
-![image-20220502210802129](./static/document/image-20220502210802129.png)
+##### 登录注册界面
 
-**④Strategy**
+![img](.\static\document\wps3.jpg) 
 
-![image-20220502210848826](./static/document/image-20220502210848826.png)
+ 
 
-![image-20220502210937356](./static/document/image-20220502210937356.png)
+包括登录、注册表单的显示。
 
-**⑤Official**
+##### **个人信息界面**
 
-![image-20220502211017028](./static/document/image-20220502211017028.png)
 
-**⑥FeedBack**
 
-![image-20220502211044914](./static/document/image-20220502211044914.png)
+![img](.\static\document\wps4.jpg) 
 
-**⑦UserInfo**
+ 
 
-![image-20220502211148498](./static/document/image-20220502211148498.png)
+包括个人发帖、评论、身份信息、关注、粉丝、项目信息的展示。
 
-**部分子路由组件：**
+##### **文章阅读界面**
 
-![image-20220502212438361](./static/document/image-20220502212438361.png)
+ 
 
-![image-20220502212450419](./static/document/image-20220502212450419.png)
+![img](.\static\document\wps5.jpg) 
 
-![image-20220502212459295](./static/document/image-20220502212459295.png)
+ 
 
-![image-20220502212525063](./static/document/image-20220502212525063.png)
+包括文章标题、模块、内容、作者信息、评论、活动推荐等信息。
 
-**⑧ArticleDetail**
+ 
 
-![image-20220502211357257](./static/document/image-20220502211357257.png)
+##### **文章发布界面**
 
-![image-20220502212210281](./static/document/image-20220502212210281.png)
+ 
 
-#### **Show by components:**
+![img](.\static\document\wps6.jpg) 
 
-```tex
-components:
-	ArticleCard,
-	ArticleCreate,
-	ArticlePre,
-	Comments,
-	DIYmodal,
-	Footer,
-	Header,
-	ImgSwiper,
-	NavCard,
-	NavTag,
-	OfficialInfo,
-	RecTopic,
-	RecUser,
-	Register,
-	TopMessage,
-	UserComment,
-	VideoCard
-```
+包括文章内容表单的填写界面。
+
+##### **用户反馈界面**
+
+![img](.\static\document\wps7.jpg) 
+
+包括用户的反馈内容和处理情况展示。
+
+
+
+##### **Swagger后端接口界面**
+
+![img](.\static\document\wps8.jpg) 
 
 ### About author
 

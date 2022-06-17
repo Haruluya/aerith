@@ -63,6 +63,16 @@ export class UserService {
     return  this.userRepository.insert(user);
   }
 
+  updateUser(user:User){
+    return this.userRepository
+    .createQueryBuilder()
+    .update(User)
+    .set(user)
+    .where("id = :id", { id: user.id })
+    .execute();
+  }
+
+
 
  async remove(id: string): Promise<void> {
     this.userRepository.delete(id);

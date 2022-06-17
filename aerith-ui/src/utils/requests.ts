@@ -45,7 +45,7 @@ export const postloginConfirmByMobile = (data:object)=>
     })
 
 export const postupdateInfo = (data:object)=>
-    request.post(`/${AERITH_API}/user/postupdateInfo`,{
+    request.post(`/${AERITH_API}/user/updateInfo`,{
         data,
     })
 

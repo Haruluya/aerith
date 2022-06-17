@@ -26,7 +26,6 @@ const ArticleComment = (props:any)=>{
 
 
   const deleteComment = (e)=>{
-    console.log();
     e.stopPropagation();
     if (!e.target.dataset.index){
       return;
@@ -39,12 +38,21 @@ const ArticleComment = (props:any)=>{
       cancelText: '取消',
       onOk:async ()=>{
         if (props.dispatch){
-            await props.dispatch({
+            if (!e.target.dataset.indexy){
+              await props.dispatch({
                 type: 'global/deleteComment',
                 payload:{
                   id:props.tdata.comments[e.target.dataset.index].id
                 } 
             })
+            }else{
+              await props.dispatch({
+                type: 'global/deleteComment',
+                payload:{
+                  id:props.tdata.comments[e.target.dataset.index].children.comments[e.target.dataset.indexy].id
+                } 
+            })
+            }
             await  props.dispatch({
               type: 'global/getArticleCommentDataById',
               payload:{
@@ -52,7 +60,6 @@ const ArticleComment = (props:any)=>{
               } 
             })
           }
-          
           setReflash(true);
           message.success("删除成功！");
       }
@@ -140,7 +147,7 @@ const ArticleComment = (props:any)=>{
                                   (<Tag color="volcano" className={styles.mainTag}>贴主</Tag>)
                                 }
                                {props.tdata.comments[index].children.users[indexy][0].id == props.global.userData.id&&
-                                  (<Button type="danger" shape="round" className={styles.deleteButton} onClick={(e)=>deleteComment(e)}>删除</Button>)
+                                  (<Button type="danger" shape="round" data-index={index} data-indexy={indexy}  className={styles.deleteButton} onClick={(e)=>deleteComment(e)}>删除</Button>)
                                 }
                               </p>
                             )}
@@ -179,6 +186,12 @@ const ArticleComment = (props:any)=>{
                           content:values.comment,
                           parent:props.tdata.comments[index].id
                         } 
+                    })
+                    await props.dispatch({
+                      type: 'global/getArticleCommentDataById',
+                      payload:{
+                        id:props.location.query.aid,
+                      } 
                     })
                     setReflash(true);
                   }

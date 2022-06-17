@@ -6,7 +6,8 @@ import { Link } from 'umi';
 
 export default function OfficialCard() {
   return (
-    <div className={styles.mainContainer} onClick={()=>{history.push('/articledetail?aid=44')}}>
+    <Link to='/articledetail?aid=44'>
+        <div className={styles.mainContainer} >
         <div className={styles.tags}>
             <Tag color={'red'}>
                 官方
@@ -25,5 +26,6 @@ export default function OfficialCard() {
             </img>
         </div>
     </div>
+    </Link>
   )
 }

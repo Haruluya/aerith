@@ -211,15 +211,15 @@ const UserMenu:FC<HeaderProps> = ({global,dispatch}) => {
               <div className={styles.drawerAvatar}>
                 <Avatar
                 size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                src={avatar} 
+                src={global.userData.avatar} 
                 >
                 </Avatar>
                 <Divider/>
-                <div className={styles.nickname}>{nickName}</div>
+                <div className={styles.nickname}>{global.userData.username}</div>
               </div>
 
               <div className={styles.signature}>
-                <span>{signature}</span>
+                <span>{global.userData.signature}</span>
                 <Button onClick={updateSignatureAndNickName}>修改</Button>
               </div>
               <Divider/>

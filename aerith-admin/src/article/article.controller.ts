@@ -39,7 +39,7 @@ export class ArticleController {
     @ApiOperation({ summary: '根据文章id获取文章数据' })
     @Post('getArticleDataById')
     async getArticleDataById(@Body() data:ArticleRequest){
-
+        
         let result = await this.articleService.getArticlesById(data.uid);
         return jsonRes._success({
             result

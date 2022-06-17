@@ -110,6 +110,7 @@ const GlobalDva: GlobalDvaType = {
       *updateInfo({ payload }, { call, put }) {
         // 请求验证。
         const result = yield call(updateInfo, payload);
+        console.log(payload,"ppppppppppp")
         // 响应失败。
         if (!result) {
           message.error('更新信息失败！');

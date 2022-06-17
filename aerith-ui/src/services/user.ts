@@ -21,7 +21,7 @@ export async function userData(params: any):Promise<any> {
     return null;
 }
 export async function updateInfo(params: any):Promise<any> {
-    const response = await postupdateInfo(token);
+    const response = await postupdateInfo(params);
     if (!response){
         return null;
     } 
