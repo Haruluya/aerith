@@ -12,8 +12,6 @@
 
 #### Name
 
-![img]()
-
 **Aerith：**
 
 ![aerith](https://pics4.baidu.com/feed/14ce36d3d539b600ae6ca942ad64c52fc75cb75b.jpeg?token=27eb1a61fe6ef1a72fd222c09a8f01c4&s=EB7200C74048155589F4A48303002091)
@@ -35,8 +33,6 @@
 
 ### Function Introduction
 
-## 
-
 ​	本项目以【游戏论坛】为题，基于框架Umijs、Nestjs，Typescript语法和规范、利用Swagger规范和可视化后端接口文档、以整洁统一的UI界面实现了完整的用户登录、用户注册、用户管理、文章浏览、文章搜索、板块分类、标签查找、Markdown文字渲染、文章发布、文章评论、用户关注、个人信息管理、浏览量统计，最新、最热文章统计等功能。
 
 ### Presentation
@@ -49,19 +45,19 @@
 
  
 
-![img](.\static\document\wps1.jpg) 
+![img](./static/document/wps1.jpg) 
 
 包括轮播图、部分个人信息、活动推荐、热门帖子的显示。
 
 ##### 板块主界面
 
-![img](.\static\document\wps2.jpg) 
+![img](./static/document/wps2.jpg) 
 
 包括置顶信息、所属板块文章和活动推荐的显示。
 
 ##### 登录注册界面
 
-![img](.\static\document\wps3.jpg) 
+![img](./static/document/wps3.jpg) 
 
  
 
@@ -71,7 +67,7 @@
 
 
 
-![img](.\static\document\wps4.jpg) 
+![img](./static/document/wps4.jpg) 
 
  
 
@@ -81,7 +77,7 @@
 
  
 
-![img](.\static\document\wps5.jpg) 
+![img](./static/document/wps5.jpg) 
 
  
 
@@ -93,13 +89,13 @@
 
  
 
-![img](.\static\document\wps6.jpg) 
+![img](./static/document/wps6.jpg) 
 
 包括文章内容表单的填写界面。
 
 ##### **用户反馈界面**
 
-![img](.\static\document\wps7.jpg) 
+![img](./static/document/wps7.jpg) 
 
 包括用户的反馈内容和处理情况展示。
 
@@ -107,7 +103,7 @@
 
 ##### **Swagger后端接口界面**
 
-![img](.\static\document\wps8.jpg) 
+![img](./static/document/wps8.jpg) 
 
 ### About author
 
